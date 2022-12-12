@@ -1,0 +1,35 @@
+
+{% extends 'head_foot.html'%}
+{%load static%}
+
+
+{% block content%}
+
+
+<div class="row  text-light pt-5 pb-5" style="background:linear-gradient(to right,rgb(54, 175, 54),rgba(55, 55, 239, 0.847));">
+  <h1 class="ps-5">Blog</h1>
+</div>
+<div class="container">
+  <div class="row">
+    {% for values in data %}
+    
+    <div class="col-4 mt-5">
+      
+      <a href="{%url 'blogdetail' id=values.id %}" style="text-decoration: none;">
+      <div class="card shadow" style="width: 24rem;">
+        {% if values.image %}
+       <img src="{{ values.image.url }}" class='card-img-top' style="height: 200px;">
+       {% endif %}
+       <div class="card-body">
+          <h5 class="card-title">{{values.title|truncatewords:'5'}}</h5>
+    
+        </div>
+      </div></a>
+      
+    </div>
+    
+
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

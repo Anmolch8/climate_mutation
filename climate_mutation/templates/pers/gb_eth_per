@@ -1,0 +1,77 @@
+{% extends '../vizs/superbase.html' %}
+{% load static %}
+
+
+
+{% block heading %}
+global earth temperature perdiction
+{% endblock heading %}
+
+{% block col1 %}
+<details >
+    <summary>select visualizations</summary>
+    <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
+        <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="LandAverageTemperature" name="temp" >
+          <label class="form-check-label" for="firstradio">Land average temperature</label>
+        </li>
+        
+         <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="LandMaxTemperature" name="temp" >
+          <label class="form-check-label" for="secondradio">Land maximum temperature</label>
+        </li>
+        <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="LandMinTemperature" name="temp"  >
+          <label class="form-check-label" for="thirdradio">Land minimum temperature</label>
+        </li>
+        <li class="list-group-item border-0">
+            <input class="form-check-input" type="radio" value="LandAndOceanAverageTemperature" name="temp"  >
+            <label class="form-check-label" for="fourthradio">Land and ocean average temperature</label>
+          </li>
+      </ul>
+</details>
+
+
+{% endblock col1 %}
+
+{% block col2 %}
+<button type="submit" class="btn btn-success btn-secondary mt-3">Submit</button>
+
+
+{% endblock col2 %}
+
+{% block graph %}
+
+<div class="content-inner ">
+    <!-- Page Header-->
+    
+      <div class="container-fluid pt-3">
+        <div class="row">
+          
+            <div class="col-md-1"></div>
+            <div class="col-md-10" >
+                {% if graphic %}
+                <h1 class="text-center" style="text-shadow: 10px 20px 5px #ccc; font-size: 50px;color:#1daccb;">
+                    {% block heading2 %}
+                    {% endblock %}
+                </h1>
+                {% endif %}
+            </div>
+    
+        </div>
+                <div class="col-md-12 text-center pt-5">
+     
+                    {% if graphic %}
+                    <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
+                    {% endif %}
+                
+                       </div>
+          
+        </div>
+      </div>
+     
+
+  </div>
+</div>
+</div>
+{% endblock %}

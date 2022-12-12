@@ -1,0 +1,50 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<h1>
+    {% block heading %}
+    {% endblock %}
+</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="conatiner">
+     <div class="row alert alert-success ">
+        <div class="col-3">
+            {% block col1 %}
+            {% endblock %}
+        </div>
+        <div class="col-3">
+            {% block col2 %}
+            {% endblock %}
+        </div>
+        <div class="col-3">
+            {% block col3 %}
+            {% endblock %}
+
+        </div>
+        <div class="col-3">
+            {% block col4 %}
+            {% endblock %}
+        </div>
+
+     </div>
+
+    </div>
+
+
+
+
+</div>
+</form>    
+
+{% block graph %}
+{% endblock %}
+
+
+{% endblock %}

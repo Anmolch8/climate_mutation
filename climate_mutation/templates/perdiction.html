@@ -1,0 +1,21 @@
+{% extends 'sidebar.html' %}
+{%load static%}
+{% block content%}
+
+{% for perdiction in data%}
+<div class="conatiner">
+    <div class="row alert alert-success">
+        <div class="col-9 p-2">
+             <i class="icofont-double-right icofont-1x"></i><span style="font-size:20px" class="text-dark" >{{perdiction.perdiction_name}}</span><br>  
+                <!-- <a href="{{perdiction.link}}"><button class="btn btn-primary">view perdiction</button></a> -->
+        </div>
+        <div class="col-3  ">
+            <a href="{{perdiction.link}}"> <i class="icofont-eye icofont-1x text-success"></i><span style='color:rgb(54, 175, 54)' class="fs-5"> view perdiction</span></a>
+        </div>
+    </div>
+</div>
+
+</span></h3>
+
+{% endfor %}
+{% endblock %}

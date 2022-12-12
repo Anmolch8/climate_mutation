@@ -1,0 +1,54 @@
+{% extends 'vizs/superbase.html' %}
+
+{% block heading %}
+Number of deaths in country of particular year due to air pollution
+{% endblock %}
+{% block col1 %}
+<select name="year" class="form-select">
+    {% include 'vizs/years.html' %}    
+</select>
+{% endblock %}
+{% block col2 %}
+{% include 'vizs/countries.html' with type='radio' %}
+{% endblock %}
+
+{% block col3 %}
+<button type="submit" class="btn btn-success btn-secondary mt-3">
+    submit
+         </button>
+{% endblock %}
+{% block graph %}
+<div class="content-inner ">
+    <!-- Page Header-->
+    
+      <div class="container-fluid pt-3">
+        <div class="row">
+          
+            <div class="col-md-1"></div>
+            <div class="col-md-10" >
+                {% if graphic %}
+                <h1 class="text-center" style="text-shadow: 10px 20px 5px #ccc; font-size: 50px;color:#1daccb;">
+                    {% block heading2 %}
+                    {% endblock %}
+                </h1>
+                {% endif %}
+            </div>
+    
+        </div>
+                <div class="col-md-12 text-center pt-5">
+                    {% if graphic %}
+                    <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
+                    {% endif %}
+                </div>
+          
+        </div>
+      </div>
+     
+
+  </div>
+</div>
+</div>
+
+    
+
+{% endblock %}

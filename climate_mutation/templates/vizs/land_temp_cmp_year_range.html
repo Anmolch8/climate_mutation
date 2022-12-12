@@ -1,0 +1,35 @@
+{% extends 'vizs/base3.html' %}
+
+
+
+{% block heading %}
+Land temperature visualizations
+{% endblock %}
+
+
+{% block extra %}
+<details >
+    <summary>select visualizations</summary>
+    <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
+        <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="LandAverageTemperature" name="temp" >
+          <label class="form-check-label" for="firstradio">Land average temperature</label>
+        </li>
+        
+         <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="LandMaxTemperature" name="temp" >
+          <label class="form-check-label" for="secondradio">Land maximum temperature</label>
+        </li>
+        <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="LandMinTemperature" name="temp"  >
+          <label class="form-check-label" for="thirdradio">Land minimum temperature</label>
+        </li>
+        <li class="list-group-item border-0">
+            <input class="form-check-input" type="radio" value="LandAndOceanAverageTemperature" name="temp"  >
+            <label class="form-check-label" for="fourthradio">Land and ocean average temperature</label>
+          </li>
+      </ul>
+</details>
+
+
+{% endblock %}

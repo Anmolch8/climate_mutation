@@ -1,0 +1,48 @@
+{% extends 'head_foot.html'%}
+{% load static %}
+{% block title %}
+ngos
+{% endblock %}
+{% block head %}
+ <style>
+    .gr{
+        background:linear-gradient(to right,rgb(54, 175, 54),rgba(55, 55, 239, 0.847));
+    }
+ </style>
+{% endblock %}
+{% block content %}
+
+<div class="row  text-light pt-5 pb-5 gr">
+    <h1 class="ps-5">NGOS</h1>
+  </div>
+<div class="container">
+    <br>
+    {% for n in ngo %}
+    <br>   
+        <div class="row border p-4 bg-light shadow">
+       
+          <div class="col-2 p-4">
+            <img src="{{n.logo.url}}" alt="" width="100%" class="border-rounded" >
+    
+          </div>    
+          <div class="col-7">    
+            <h3 style="color:rgba(100, 131, 230) ;">{{n.title}}</h3>
+            <p>
+                {{n.description | truncatewords:500}}
+            </p>
+          </div>
+          <div class="col-3">
+            <h4><span class="primarycolor">Cause:</span>{{n.cause}}
+            </h4>
+        
+            <br>
+          <a href="{%url 'ngodescription' id=n.id %}" style="text-decoration: none;" class="btn btn-primary">view more</a>
+          
+          </div>
+        </div>
+        {% endfor %}
+      
+    
+</div>
+  
+{% endblock %}

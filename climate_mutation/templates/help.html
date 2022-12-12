@@ -1,0 +1,28 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="conatiner">
+    <div class="row">
+     <div class="col-3"></div>
+     <div class="col-6 p-5">
+      <form action="" method="post" class="border p-5">
+         {% csrf_token %}
+         <h3>Post your query to us!</h3>
+         <p class="text-danger">{{msg}}</p>
+          <input name="heading" type="text" class="form-control" placeholder="heading"><br>
+          <textarea name="description" class="form-control" placeholder="Description" rows="5"></textarea><br>
+          <button type="submit" name="submit" class="btn-primary">Submit</button>
+         </form>
+ 
+     </div>
+     <div class="col-1"></div>
+    </div>
+ 
+ </div>
+ 
+ 
+ 
+ 
+{% endblock %}

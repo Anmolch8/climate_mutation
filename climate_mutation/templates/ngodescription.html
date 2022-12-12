@@ -1,0 +1,51 @@
+
+{% extends 'head_foot.html'%}
+{%load static%}
+
+{% block title %}
+ngo description
+{% endblock %}
+
+{% block content %}
+<style>
+    .mycolor{ color:rgb(54, 175, 54) !important;}
+    .c1{text-decoration:none ;color:white}
+    .c1:hover{color:rgb(54, 175, 54)}
+    .grad{
+        background-image: linear-gradient(to right,rgb(54, 175, 54),rgba(55, 55, 239, 0.847));
+    }
+    
+</style>
+<div class="container-fluid p-5 grad" style="background-size:cover;">
+    <div class="row text-center pt-5 pb-5 mt-5 mb-5">
+    
+    <div class="col-12">
+    <h2 style="color:white">{{data.name}}</h2>
+    <span style="color:white"><a href="{% url 'ngo' %}"  class="c1" >Go to ngos</a></span>
+
+
+
+</div></div></div>
+<div class="container-fluid mt-5">
+    <div class="container">
+<div class="row">
+ <div class="col-3 mt-5" >
+<img src="{{data.logo.url}}" width="80%" >
+</div>
+
+ <div class="col-9">
+    <h1 class="nderline">{{data.name}}</h1>
+  
+   <i class="icofont-ui-browser icofont-2x"> </i><span class="fs-4"> {{data.website}}</span> <br>
+   <i class="icofont-ui-home icofont-2x"> </i><span class="fs-4"> {{data.address}}</span> <br><br>
+    <p class="fs-5">{{data.description}}</p>
+</div>
+</div>
+    
+
+
+</div>
+<br>
+
+
+{% endblock %}

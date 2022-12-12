@@ -1,0 +1,117 @@
+{% extends 'head_foot.html'%}
+{% load static %}
+
+
+{% block content %}
+<style>
+    .mycolor{ color:rgb(54, 175, 54) !important;}
+    .c1{text-decoration:none ;color:white}
+    .c1:hover{color:rgb(54, 175, 54)}
+    .grad{
+        background-image: linear-gradient(to right,rgb(54, 175, 54),rgba(55, 55, 239, 0.847));
+    }
+    
+</style>
+
+<div class="container-fluid p-5 grad" style="background-size:cover;">
+<div class="row text-center pt-5 pb-5 mt-5 mb-5">
+<div class="col-5"></div>
+<div class="col-2">
+<h2 style="color:white">Contact us</h2>
+<span style="color:white"><a href="{% url 'index' %}"  class="c1" >Home</a></span>
+
+
+</div>
+<div class="col-5"></div>
+
+
+
+
+</div>
+</div>
+
+
+<div class="container pt-5 pb-5">
+
+<div class="row">
+<div class="col-6">
+    <h2 class="text-secondary border-bottom border-3 pb-2">Say hello <span class="mycolor">to us</span></h2>
+
+    <form action="" method="post" >
+      {% csrf_token %}
+      <input name="name" type="text" placeholder="Name" class="form-control border-0 border-bottom "><br/>
+      <input name="email"  type="text" placeholder="Email" class="form-control  border-0 border-bottom "><br/>
+      <input name="subject" type="text" placeholder="Subject" class="form-control  border-0 border-bottom"><br/>
+      <textarea  name="message" cols="30" rows="5" class="form-control  border-0 border-bottom border-2" placeholder="Message" ></textarea><br/>
+      <button class="btn btn-primary text-center btn-lg" style="background-color: rgb(54, 175, 54); border-color: rgb(54, 175, 54);">Send</button>
+    {%  if flag == 1 %}
+       <h3 style="color: red;">we will contact you soon</h3>
+    
+
+    {% endif %}
+    
+    </form>
+
+
+</div>
+<div class="col-1"></div>
+<div class="col-5">
+<h2 class="text-secondary border-bottom border-3 pb-2">Contact  <span class="mycolor">us</span></h2>
+
+<div class="row pb-3">
+    <div class="col-12">
+        <i class="icofont-home text-light p-2" style="background-color:rgb(54, 175, 54) ;"></i>  <span class="fs-4 ms-3">Ranjit Avenue B-block,Amritsar</span>
+    </div>
+</div>
+
+<div class="row pb-3">
+    <div class="col-12 ">
+        <i class="icofont-phone text-light p-2" style="background-color:rgb(54, 175, 54) ;"></i> <span class="fs-4 ms-3">7646968635</span>
+      </div>
+ 
+</div>
+
+<div class="row pb-3">
+    <div class="col-12">
+        <i class="icofont-ui-message text-light p-2" style="background-color:rgb(54, 175, 54) ;"></i> <span class="fs-4 ms-3">mutationclimate@gmail.com</span>
+    </div>
+
+</div>
+
+
+
+<h2 class="pt-3 text-secondary border-bottom border-3 pb-2 ">Our social  <span class="mycolor">handles</span></h2>
+<!-- <hr style="width: 10px;"> -->
+<br>
+  <a href="https://www.instagram.com/accounts/login/" style="text-decoration: None;"> <i class="icofont-instagram text-light p-2 icofont-2x " style="background-color:crimson ;"></i>   </a>
+  <a href="https://www.facebook.com/login/" style="text-decoration: None;"> <i class="icofont-facebook text-light p-2 icofont-2x " style="background-color:blue ;"></i> </a>
+  <a href="https://www.youtube.com/" style="text-decoration: None;"> <i class="icofont-youtube-play text-light p-2 icofont-2x " style="background-color:red ;"></i></a>
+
+
+
+</div>
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-12">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3396.3997953362014!2d74.86061371482177!3d31.650280147883155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39196491e5555555%3A0xae53a9566895ae6e!2sCentre%20For%20Advanced%20Computers%20and%20Management%20Studies!5e0!3m2!1sen!2sin!4v1665217520818!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

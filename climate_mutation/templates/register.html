@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static%}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="{%static 'themecolor.css'%}">
+  <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{%static 'icofont/icofont.min.css'%}">
+
+</head>
+    <body >
+
+{% if m1 == 1 %}
+      <script>
+        alert("data added")
+      </script>
+{% elif m1 == 2 %}
+      <script>
+        alert("password and confirm password does not match")
+      </script>
+
+{% endif %}
+
+
+
+      <form action="" method="post">
+        {% csrf_token %} 
+        <div class="container-fluid primarygradient pt-5 pb-5 ">
+          <div class="container back" style="border-radius:20px">
+           
+            <div class="row pt-5 pb-5 ps-4" style="background-color: rgba(255, 255, 255, 0.418);border-radius:20px">
+              <div class="col-1"></div>
+                <div class="col-6 login p-4 ">
+               <h1 class="pt-3 ps-3">SIGN UP
+               </h1>
+               {% if m1 == 3 %}
+                 <h6 style="color:red" class="ms-3">user already registered</h6>
+               {% endif %}  
+               <h6 class="text-secondary ps-3 fs-6">Please fill the form to create an account!</h6>
+              <hr>
+              
+              <div class="row">
+               
+                <div class="col-6">
+                  <input name="fname"  type="text" placeholder="First name" class="form-control form-control-lg" required>
+                </div>
+                <div class="col-6">
+                  <input  name="lname" type="text" placeholder="last name" class="form-control form-control-lg" required>
+                </div>
+              </div>
+              <br/>
+                
+                
+                <input name='user_email' type="email" placeholder="Email" class="form-control form-control-lg" style="max-width: 1000px;" required>    
+                <br/>
+                <input  name="pas"  type="password" placeholder="Password" class="form-control form-control-lg" style="max-width: 1000px;" required>    
+                <br/>
+                <input  name="con_pass"   type="password" placeholder="Confirm password" class="form-control form-control-lg" style="max-width: 1000px;" required>    
+                <br/>
+               <button  name="submit"  type="submit" class="btn  btn-lg btn-secondary" 
+               style="width:260px ;border-radius: 30px; background-color: rgb(54, 175, 54); border-color: rgb(54, 175, 54);">Sign Up</button>
+               <h6 class=" mt-3  mb-3 ms-2" style="color: grey; font-weight:100; font-size:smaller;">Already registered?
+                
+                <a href="{% url 'login' %}" style="text-decoration: none;color: green; font-weight: bold;">login</a>
+              </h6>
+              </div>
+            
+              <div class="col-4 text-center mt-2">
+              <h2 style="color:rgb(54, 175, 54);;">Quote</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nam voluptates cum maiores dignissimos officiis mollitia atque fugiat. Sunt praesentium aliquam facilis sit optio odit labore ab maiores architecto quibusdam repellendus voluptates voluptatem eius provident ex nisi velit libero nemo, voluptate officia enim. Aut, voluptatem omnis. Culpa, accusamus fugiat aspernatur nulla quisquam aliquid pariatur optio error laudantium qui iure eaque expedita eos deserunt alias. Facilis voluptatem amet aut veritatis, repudiandae maxime quis? Adipisci eligendi omnis reiciendis nemo ratione cum blanditiis.
+              </p>
+              </div>
+              
+             
+            </div>
+          </div>
+          
+      </form>
+        </div>
+        
+
+
+
+
+
+</body>
+
+
+
+
+</html>

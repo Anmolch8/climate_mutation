@@ -1,0 +1,125 @@
+{% extends 'head_foot.html'%}
+{% load static %}
+{% block title %}
+climate change evidence
+{% endblock %}
+{% block head %}
+<style>
+    .lh{
+        line-height: 34px;
+    } 
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fliud text-center "style=" height: 800px; background-size: cover; background-image:url({%static 'evidence.jpg' %});">
+    <div class="row">
+        <div col-12>
+            <h3 class="text-light " style="margin-top:350px ;  ;font-size:xx-large">Evidence</h3>
+            <h2 class="pt-3 text-light" style="font-size: 50px;">some facts about climate change</h2>
+        </div>
+    </div>
+</div>
+<div class="container-fliud text-center " style=" height: 80px; background-color: rgb(241, 138, 73)">
+<h4 class="text-light p-4">"I want you to act as if the house is on fire, because it is" - Greta Thunberg</h4>
+</div>
+<br><br>
+<div class="container">
+
+<div class="row ms-5">
+<div class="col-12">
+ 
+  <center>
+    <h1>There is unequivocal evidence that Earth is warming at an unprecedented rate. Human activity is the principal cause.
+    </h1><br><br>
+    <iframe controls width="560" height="315" src="https://www.youtube.com/embed/Bxd8y03zETI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+    <h1>The rate of change since the mid-20th century is unprecedented over millennia.</h1>
+    <p style="text-align: justify; font-size: large;">Earth's climate has changed throughout history. Just in the last 800,000 years, there have been eight cycles of ice ages and warmer periods, with the end of the last ice age about 11,700 years ago marking the beginning of the modern climate era — and of human civilization. Most of these climate changes are attributed to very small variations in Earth’s orbit that change the amount of solar energy our planet receives.
+
+        The current warming trend is different because it is clearly the result of human activities since the mid-1800s, and is proceeding at a rate not seen over many recent millennia.1 It is undeniable that human activities have produced the atmospheric gases that have trapped more of the Sun’s energy in the Earth system. This extra energy has warmed the atmosphere, ocean, and land, and widespread and rapid changes in the atmosphere, ocean, cryosphere, and biosphere have occurred.
+
+        Earth-orbiting satellites and new technologies have helped scientists see the big picture, collecting many different types of information about our planet and its climate all over the world. These data, collected over many years, reveal the signs and patterns of a changing climate.</p>
+        
+      <p style="text-align: justify; font-size: large;">  Scientists demonstrated the heat-trapping nature of carbon dioxide and other gases in the mid-19th century.2 Many of the science instruments NASA uses to study our climate focus on how these gases affect the movement of infrared radiation through the atmosphere. From the measured impacts of increases in these gases, there is no question that increased greenhouse gas levels warm Earth in response.
+        
+        Ice cores drawn from Greenland, Antarctica, and tropical mountain glaciers show that Earth’s climate responds to changes in greenhouse gas levels. Ancient evidence can also be found in tree rings, ocean sediments, coral reefs, and layers of sedimentary rocks. This ancient, or paleoclimate, evidence reveals that current warming is occurring roughly 10 times faster than the average rate of warming after an ice age. Carbon dioxide from human activities is increasing about 250 times faster than it did from natural sources after the last Ice Age.3
+
+
+    </p>  
+   
+
+
+</center>
+<br><br>
+  
+</div>
+<div class="col-2"></div>
+
+
+</div>
+
+</div>
+<br><br>
+<div class="container-fluid p-2" style="background-color:black">
+    <div class="row">
+        <div class="col-4 text-light">
+            <h2 class="text-end p-3 mt-5">
+                The Evidence for Rapid Climate Change Is Compelling:</h2>
+
+        </div>
+        <div class="col-8 text-light">
+            {% for i in evidence %}
+          
+            <hr class="mt-5">
+              
+            <div class="conatiner">
+
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                    </div>
+
+                    <div class="col-9">
+                        <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                        <p>
+                            {{i.description | truncatewords:1500}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+         
+         
+        
+            {% endfor %}
+        </div>
+    </div>        
+
+</div>
+      
+    
+<h1 class="text-center mt-4 pt-3">TALKINGS O<span style="border-bottom: 10px double #36AF36">N CLI</span>MATE CHANGE</h1>
+  
+
+
+<div class="row pt-5 mt-5">
+  
+  <div class="col-1"></div>
+  <div class="col-10">
+<h1>
+   {% include 'testimonial.html' with rev=reviews only %}
+</h1>
+
+  </div>
+  <div class="col-11"></div>
+ 
+ </div>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

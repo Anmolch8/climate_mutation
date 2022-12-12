@@ -1,0 +1,92 @@
+{% extends 'vizs/superbase.html' %}
+
+
+{% block heading %}
+
+comparison for diff cause of air pollution for  one country in range of years
+{% endblock %}
+
+{% block col1 %}
+from year
+<select name="year1" class="form-select">
+    {% include 'vizs/years.html' %}
+</select>
+{% endblock %}
+
+
+
+{% block col2 %}
+to year
+<select name="year2" class="form-select">
+    {% include 'vizs/years.html' %}
+</select>
+{% endblock %}
+
+{% block col3 %}
+select country
+{% include 'vizs/countries.html' with type='checkbox' %}
+
+{% endblock %}
+
+{% block col4 %}
+<details >
+    <summary>select cause</summary>
+    <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
+        <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="by_solidfuels" name="cause" >
+          <label class="form-check-label" for="firstradio"> by solid fuels</label>
+        </li>
+        
+         <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="by_ambient_particulate_matter" name="cause" >
+          <label class="form-check-label" for="secondradio">by partuiculate matter</label>
+        </li>
+        <li class="list-group-item border-0">
+          <input class="form-check-input" type="radio" value="by_ambient_ozone" name="cause"  >
+          <label class="form-check-label" for="thirdradio">by ambient ozone</label>
+        </li>
+        <li class="list-group-item border-0">
+            <input class="form-check-input" type="radio" value="by_all_causes" name="cause"  >
+            <label class="form-check-label" for="fourthradio">by all causes</label>
+          </li>
+      </ul>
+</details>
+<button type="submit" class="btn btn-success btn-secondary mt-3">Submit</button>
+
+{% endblock %}
+
+{% block graph %}
+<div class="content-inner ">
+    <!-- Page Header-->
+    
+      <div class="container-fluid pt-3">
+        <div class="row">
+          
+            <div class="col-md-1"></div>
+            <div class="col-md-10" >
+                {% if graphic %}
+                <h1 class="text-center" style="text-shadow: 10px 20px 5px #ccc; font-size: 50px;color:#1daccb;">
+                    {% block heading2 %}
+                    {% endblock %}
+                </h1>
+                {% endif %}
+            </div>
+    
+        </div>
+                <div class="col-md-12 text-center pt-5">
+                    {% if graphic %}
+                    <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
+                    {% endif %}
+                </div>
+          
+        </div>
+      </div>
+     
+
+  </div>
+</div>
+</div>
+
+    
+
+{% endblock %}

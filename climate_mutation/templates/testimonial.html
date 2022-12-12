@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+<style> 
+.testimonial{
+    border-left: 4px solid #001d4a;;
+    box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.06);
+    padding: 30px 30px 30px 30px;
+    margin: 0 15px 30px 15px;
+    overflow: hidden;
+    position: relative;
+}
+.testimonial:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-top: 25px solid #001d4a;;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    transform: rotate(-45deg);
+    transform-origin: 80% -30% 0;
+}
+.testimonial .pic{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 60px;
+    /* left: 20px; */
+}
+
+.testimonial .description{
+    font-size: 15px;
+    font-style: italic;
+    color: #918686;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+.testimonial .title{
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #001d4a;;
+    margin: 0;
+}
+.testimonial .post{
+    display: inline-block;
+    font-size: 17px;
+    color: rgb(54, 175, 54);
+}
+.owl-theme .owl-controls .owl-page span{
+    border: 2px solid rgb(54, 175, 54);
+    background: #fff;
+    opacity: 1;
+}
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls .owl-page:hover span{
+    background: rgb(54, 175, 54);
+}
+@media only screen and (max-width: 767px){
+    .testimonial{
+        padding: 20px;
+        text-align: center;
+    }
+}
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <div id="testimonial-slider" class="owl-carousel">
+                {% for rev in rev %}
+                <div class="testimonial">
+                    <h3 class="title">{{rev.heading}}</h3>
+                    <p class="description">
+                        {{rev.description}}
+                    </p>
+                    
+                    <small class="post">{{rev.user_name}}</small>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+ <script>
+$(document).ready(function(){
+    $("#testimonial-slider").owlCarousel({
+        items:3,
+        itemsDesktop:[800,2],
+        itemsDesktopSmall:[990,1],
+        itemsTablet:[768,1],
+        pagination:true,
+        navigation:false,
+        navigationText:["",""],
+        slideSpeed:1000,
+        autoPlay:true
+    });
+});
+</script>

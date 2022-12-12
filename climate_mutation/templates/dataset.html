@@ -1,0 +1,42 @@
+{% extends 'sidebar.html' %}
+{%load static%}
+
+
+
+{% block content%}
+
+<h3>{{data.name}}</h3>
+<p class="text-secondary">{{data.description}}</p>
+<h5>No.of rows: <span style="font-size: 18px;">{{data.n_rows}}</span></h5>
+<h5>No.of columns: <span style="font-size: 18px;">{{data.n_columns}}</span></h5>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-8">
+            <table class="table border table-striped" >
+                <tr class='table-success'>
+                    <th >Column</th>
+                    <th >Description</th>
+                </tr>
+                {% for column,column_des in ds_col_des %}
+                <tr>
+                    <td  >{{column}}</td>
+                    <td >{{column_des}}</td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+            
+
+
+
+        </div>
+        <div class="col-3">
+            <a href="{%url 'download' path=data.download_link %}" class="btn btn-success text-white">Download dataset</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

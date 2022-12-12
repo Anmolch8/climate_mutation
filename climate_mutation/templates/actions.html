@@ -1,0 +1,118 @@
+{% extends 'head_foot.html'%}
+{% load static %}
+{% block title %}
+climate change effects
+{% endblock %}
+{% block head %}
+<style>
+    .lh{
+        line-height: 34px;
+    } 
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fliud text-center "style=" height: 800px; background-size: cover; background-image:url({%static 'themosteffec.jpg' %});">
+
+</div>
+<div class="container-fliud text-center " style=" height: 80px; background-color: rgb(241, 138, 73)">
+<h4 class="text-light p-4">“Preservation of our environment is not a liberal or conservative challenge, it's common sense.” - Ronald Reagan</h4>
+</div>
+<br><br>
+<div class="container">
+
+<div class="row ms-5">
+<div class="col-12">
+  <h1>Take urgent action to combat climate change and its impacts</h1>
+  <br><br>
+  <center>
+    <iframe width="800" height="400" src="https://www.youtube.com/embed/-wJo5aKBwq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+  </center>
+<br><br>
+   <p  class="lh">In 2020, concentrations of global greenhouse gases reached new highs, and real-time data point to continued increases. As these concentrations rise, so does the Earth’s temperature. In 2021, the global mean temperature was about 1.1°C above the pre-industrial level (from 1850 to 1900). The years from 2015 to 2021 were the seven warmest on record.
+
+    To limit warming to 1.5° Celsius above pre-industrial levels, as set out in the Paris Agreement, global greenhouse gas emissions will need to peak before 2025. Then they must decline by 43 per cent by 2030 and to net zero by 2050. Countries are articulating climate action plans to cut emissions and adapt to climate impacts through nationally determined contributions. However, current national commitments are not sufficient to meet the 1.5°C target.</p>
+    <ul class="lh">
+        <li>In 2021, the global mean temperature was about 1.1°C above the pre-industrial level (from 1850 to 1900). The years from 2015 to 2021 were the seven warmest on record.</li>
+        <li>The global annual mean temperature is projected to rise beyond 1.5°C above pre-industrial levels in at least one of the next five years.</li>
+        <li>Global carbon dioxide (CO2) emissions declined by 5.2 per cent in 2020 due to lowered energy demand caused by COVID-19-induced social and economic disruptions. But with the phasing out of COVID-related restrictions, energy-related CO2 emissions for 2021 rose by 6 per cent, reaching their highest level ever.</li>
+        <li>Climate finance provided and mobilized by developed countries totalled $79.6 billion in 2019, up from $78.3 billion in 2018. It is estimated that $1.6 trillion to $3.8 trillion will be needed each year through 2050 for the world to transition to a low-carbon future and avoid warming exceeding 1.5 °</li>
+        <li>About one third of global land areas will suffer at least moderate drought by 2100.</li>
+        <li>The sea level could rise 30 to 60 centimetres by 2100, even if greenhouse gas emissions are sharply reduced and global warming is limited to well below 2°C.</li>
+        <li>About 70 to 90 per cent of warm-water coral reefs will disappear even if the 1.5°C threshold is reached; they would die off completely at the 2°C level.</li>
+        <li>3 billion to 3.6 billion people live in contexts that are highly vulnerable to climate change.</li>
+        <li>By 2030, an estimated 700 million people will be at risk of displacement by drought alone.</li>
+        </ul>
+</div>
+<div class="col-2"></div>
+
+
+</div>
+
+</div>
+<br><br>
+<div class="container-fluid p-2" style="background-color:black">
+    <div class="row">
+        <div class="col-4 text-light">
+            <h2 class="text-end p-3 mt-5">
+              climate change actions: </h2>
+
+        </div>
+        <div class="col-8 text-light">
+            {% for i in action %}
+          
+            <hr class="mt-5">
+              
+            <div class="conatiner">
+
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                    </div>
+
+                    <div class="col-9">
+                        <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                        <p>
+                            {{i.description | truncatewords:1500}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+         
+         
+        
+            {% endfor %}
+        </div>
+    </div>        
+
+</div>
+
+
+<h1 class="text-center mt-4 pt-3">TALKINGS O<span style="border-bottom: 10px double #36AF36">N CLI</span>MATE CHANGE</h1>
+  
+
+
+<div class="row pt-5 mt-5">
+  
+  <div class="col-1"></div>
+  <div class="col-10">
+<h1>
+   {% include 'testimonial.html' with rev=reviews only %}
+</h1>
+
+  </div>
+  <div class="col-11"></div>
+ 
+ </div>
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}

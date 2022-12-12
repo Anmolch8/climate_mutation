@@ -1,0 +1,359 @@
+{% extends 'head_foot.html'%}
+{% load static %}
+{% block title %}
+climate change causes
+{% endblock %}
+
+<style>
+    .r{
+        border-radius: 60px !important;
+    }
+</style>
+
+{% block content %}
+<div class="container-fliud text-center "
+    style=" height: 800px; background-size: cover; background-image:url({%static 'causes_pic.jpg' %});">
+    <div class="row">
+        <div col-12>
+            <h3 class="text-light " style="margin-top:300px ;  ;font-size:xx-large">causes</h3>
+            <h1 class="pt-3 text-light" style="font-size: 80px;">The causes of climate change</h1>
+        </div>
+        <p class="pt-3 text-light" style="font-size:xx-large;">Human activities are driving the global warming trend<br>
+            observed since the mid-20th century.</p>
+    </div>
+
+</div>
+
+<div class="container-fluid pt-5">
+    <div class="row">
+
+
+        <div class="col-3 ps-5">
+            <h3 class="text-secondary"> Page content</h3>
+            <ul class="list-group">
+                <li class="list-group-item  " aria-current="true"><a href="#globalwarming" class="primarycolor a1"
+                        style="text-decoration: none;"> Global warming</a></li>
+                <li class="list-group-item"><a href="#effect" style="text-decoration: none;" class="primarycolor a1">
+                        Green house effect</a></li>
+                <li class="list-group-item"><a href="#gases" style="text-decoration: none;" class="primarycolor a1">
+                        Green house gases</a></li>
+                <li class="list-group-item"><a href="#humanrole" style="text-decoration: none;"
+                        class="primarycolor a1">Human roles</a></li>
+
+            </ul>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4 border">
+
+            <h3>Outcomes</h3>
+            <ul>
+                <li class="pt-4">The greenhouse effect is essential to life on Earth, but human-made emissions in the
+                    atmosphere are trapping and slowing heat loss to space.</li>
+                <li class="pt-4">Five key greenhouse gases are CO<sub>2</sub>, nitrous oxide, methane,
+                    chlorofluorocarbons, and water vapor.</li>
+                <li class="pt-4">While the Sun has played a role in past climate changes, the evidence shows the current
+                    warming cannot be explained by the Sun.</li>
+            </ul>
+
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<br><br><br><br>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 p-3" id="globalwarming">
+        <h1>
+            Evidence Shows That Current Global Warming Cannot Be Explained by Solar Irradiance
+        </h1><br>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <p style="text-align: justify; font-size:larger;">
+            Scientists use a metric called Total Solar Irradiance (TSI) to measure the changes in energy the Earth
+            receives from the Sun. TSI incorporates the 11-year solar cycle and solar flares/storms from the Sun's
+            surface.
+
+            Studies show that solar variability has played a role in past climate changes. For example, a decrease
+            in solar activity coupled with increased volcanic activity helped trigger the Little Ice Age.
+        </p><br>
+    </div>
+    <div class="col-3"></div>
+</div>
+<div class="container-fluid p-2" style="background-color:black">
+    <div class="row">
+        <div class="col-3 text-light">
+            <h2 class="text-end p-3 mt-5">
+               global warming: </h2>
+
+        </div>
+        <div class="col-9 text-light">
+            {% for i in gw %}
+          
+            <hr class="mt-5">
+              
+            <div class="conatiner">
+
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                    </div>
+
+                    <div class="col-9">
+                        <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                        <p>
+                            {{i.description | truncatewords:1500}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+         
+         
+        
+            {% endfor %}
+        </div>
+    </div>        
+
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 p-3" id="effect">
+            <h1> Green house effect which keeps <br> our planet warm</h1><br><br>
+            <video src="{%static 'green_house_effect.webm' %}" type="video/webm" width="100%" controls></video>
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 pt-5" id="#effect">
+            <p style="text-align: justify; font-size:larger;">
+                Scientists attribute the global warming trend observed since the mid-20th century to the human expansion
+                of the "greenhouse effect" — warming that results when the atmosphere traps heat radiating from Earth
+                toward space.
+
+                Life on Earth depends on energy coming from the Sun. <br><br> About half the light energy reaching
+                Earth's atmosphere passes through the air and clouds to the surface, where it is absorbed and radiated
+                in the form of infrared heat. About 90% of this heat is then absorbed by greenhouse gases and
+                re-radiated, slowing heat loss to space.
+
+
+            </p>
+            <div class="col-3" id="#effect">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 p-3">
+            <h1 id="gases">Human Activity Is the Cause of Increased Greenhouse Gas Concentrations</h1>
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mt-4">
+            <p style="text-align: justify; font-size:larger;">Over the last century, burning of fossil fuels like coal
+                and oil has increased the concentration of atmospheric carbon dioxide (CO2). This increase happens
+                because the coal or oil burning process combines carbon with oxygen in the air to make CO2. To a lesser
+                extent, clearing of land for agriculture, industry, and other human activities has increased
+                concentrations of greenhouse gases. <br><br>
+
+                How do we know what greenhouse gas and temperature levels were in the distant past?
+                The industrial activities that our modern civilization depends upon have raised atmospheric carbon
+                dioxide levels by nearly 50% since 1750. This increase is due to human activities, because scientists
+                can see a distinctive isotopic fingerprint in the atmosphere. <br><br>
+
+                In its Sixth Assessment Report, the Intergovernmental Panel on Climate Change, composed of scientific
+                experts from countries all over the world, concluded that it is unequivocal that the increase of CO2,
+                methane, and nitrous oxide in the atmosphere over the industrial era is the result of human activities
+                and that human influence is the principal driver of many changes observed across the atmosphere, ocean,
+                cryosphere and biosphere.</p>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="container-fluid p-5" style="background-color:black">
+        <div class="row">
+            <div class="col-5 text-light">
+                <h2 class="text-end p-3 mt-5">
+                    Four Major Gases That Contribute to the Greenhouse Effect: </h2>
+
+            </div>
+            <div class="col-7 text-light">
+                {% for i in gas %}
+                {% if i.title != 'water vapours' %}
+                <hr class="mt-5">
+                  
+                <div class="conatiner">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                        </div>
+
+                        <div class="col-9">
+                            <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                            <p>
+                                {{i.description}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            
+             
+             
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+           
+                
+               
+             
+          
+            
+        
+
+
+                
+         <div class="row">
+                    <div class="col-5">
+                        <h2 class="text-end p-3 mt-5 text-light">
+                            Another Gas That Contributes to the Greenhouse Effect:
+                        </h2>
+                    </div>
+                    <div class="col-7">
+
+                        <hr class="mt-5">
+                        <div class="conatiner">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="{{w.image.url}}" alt=""  width="100%" style="border-radius: 40px;">
+                                </div>
+
+                                <div class="col-9">
+                                    <h3 style="color:rgba(100, 131, 230) ;">{{w.title}}</h3>
+                                    <p class="text-light">
+                                        {{w.description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+               
+
+                    </div>
+
+                </div> 
+</div>
+
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 p-3" id="humanrole">
+            <h1>
+                Human Activity Is the Cause of Increased Greenhouse Gas Concentrations
+            </h1><br>
+
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <p style="text-align: justify; font-size:larger;">
+                Over the last century, burning of fossil fuels like coal and oil has increased the concentration of
+                atmospheric carbon dioxide (CO2). This increase happens because the coal or oil burning process combines
+                carbon with oxygen in the air to make CO2. To a lesser extent, clearing of land for agriculture,
+                industry, and other human activities has increased concentrations of greenhouse gases.
+
+                How do we know what greenhouse gas and temperature levels were in the distant past?
+                The industrial activities that our modern civilization depends upon have raised atmospheric carbon
+                dioxide levels by nearly 50% since 1750. This increase is due to human activities, because scientists
+                can see a distinctive isotopic fingerprint in the atmosphere.
+
+                In its Sixth Assessment Report, the Intergovernmental Panel on Climate Change, composed of scientific
+                experts from countries all over the world, concluded that it is unequivocal that the increase of CO2,
+                methane, and nitrous oxide in the atmosphere over the industrial era is the result of human activities
+                and that human influence is the principal driver of many changes observed across the atmosphere, ocean,
+                cryosphere and biosphere.
+            </p><br>
+
+           
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="container-fluid p-5" style="background-color:black">
+        <div class="row">
+            <div class="col-4 text-light">
+                <h2 class="text-end p-3 mt-5">
+                   effects of human evolution: </h2>
+
+            </div>
+            <div class="col-8 text-light">
+                {% for i in hroles %}
+              
+                <hr class="mt-5">
+                  
+                <div class="conatiner">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                        </div>
+
+                        <div class="col-9">
+                            <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                            <p>
+                                {{i.description | truncatewords:1500}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            
+             
+             
+            
+                {% endfor %}
+            </div>
+        </div>        
+
+</div>
+      
+    
+<h1 class="text-center mt-4 pt-3">TALKINGS O<span style="border-bottom: 10px double #36AF36">N CLI</span>MATE CHANGE</h1>
+  
+
+
+<div class="row pt-5 mt-5">
+  
+  <div class="col-1"></div>
+  <div class="col-10">
+<h1>
+   {% include 'testimonial.html' with rev=reviews only %}
+</h1>
+
+  </div>
+  <div class="col-11"></div>
+ 
+ </div>
+
+
+
+</div>
+
+
+  
+
+{% endblock %}

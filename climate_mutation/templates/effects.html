@@ -1,0 +1,210 @@
+{% extends 'head_foot.html'%}
+{% load static %}
+{% block title %}
+climate change effects
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fliud text-center "
+    style=" height: 800px; background-size: cover; background-image:url({%static 'effect.jpg' %});">
+    <div class="row">
+        <div col-12>
+            <h3 class="text-light " style="margin-top:300px ;  ;font-size:xx-large">Effects</h3>
+            <h1 class="pt-3 text-light" style="font-size: 80px;">The Effects of climate change</h1>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid pt-5">
+    <div class="row">
+
+
+        <div class="col-3 ps-5">
+            <h3 class="text-secondary"> Page content</h3>
+            <ul class="list-group">
+                <li class="list-group-item  " aria-current="true"><a href="#effect" class="primarycolor a1"
+                        style="text-decoration: none;"> change effects</a></li>
+                <li class="list-group-item"><a href="#disaster" style="text-decoration: none;" class="primarycolor a1">
+                        Disasters</a></li>
+            </ul>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4 border">
+
+            <h3>Outcomes</h3>
+            <ul>
+                <li class="pt-4">
+                    We already see effects scientists predicted, such as the loss of sea ice, melting glaciers and ice sheets, sea level rise, and more intense heat waves.
+                </li>
+                <li class="pt-4">
+                    Scientists predict global temperature increases from human-made greenhouse gases will continue. Severe weather damage will also increase and intensify.
+                </li>
+              
+            </ul>
+
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+<br><br><br><br>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 p-3" id="effect">
+        <h1>
+            Earth Will Continue to Warm and the Effects Will Be Profound
+        </h1><br>
+        <center>
+        <img src="{%static 'Effects-tryptich.jpeg' %}" alt="" width="70%" ><br><br>
+
+        </center>
+        
+        <p style="text-align: justify; font-size:larger;">
+            Global climate change is not a future problem. Changes to Earth’s climate driven by increased human emissions of heat-trapping greenhouse gases are already having widespread effects on the environment: glaciers and ice sheets are shrinking, river and lake ice is breaking up earlier, plant and animal geographic ranges are shifting, and plants and trees are blooming sooner.
+
+Effects that scientists had long predicted would result from global climate change are now occurring, such as sea ice loss, accelerated sea level rise, and longer, more intense heat waves.
+
+Some changes (such as droughts, wildfires, and extreme rainfall) are happening faster than scientists previously assessed. In fact, according to the Intergovernmental Panel on Climate Change (IPCC) — the United Nations body established to assess the science related to climate change — modern humans have never before seen the observed changes in our global climate, and some of these changes are irreversible over the next hundreds to thousands of years.
+
+Scientists have high confidence that global temperatures will continue to rise for many decades, mainly due to greenhouse gases produced by human activities.
+        </p><br>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="container-fluid p-2" style="background-color:black">
+    <div class="row">
+        <div class="col-4 text-light">
+            <h2 class="text-end p-3 mt-5">
+              climate change effects: </h2>
+
+        </div>
+        <div class="col-8 text-light">
+            {% for i in effect %}
+          
+            <hr class="mt-5">
+              
+            <div class="conatiner">
+
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                    </div>
+
+                    <div class="col-9">
+                        <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                        <p>
+                            {{i.description | truncatewords:1500}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+         
+         
+        
+            {% endfor %}
+        </div>
+    </div>        
+
+</div>
+
+<br><br>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 p-3" id="disaster">
+        <h1>
+            Rising disasters due to changing climate
+        </h1><br>
+        <p style="text-align: justify; font-size:larger;">
+            With increasing global surface temperatures the possibility of more droughts and increased intensity of storms will likely occur. As more water vapor is evaporated into the atmosphere it becomes fuel for more powerful storms to develop. More heat in the atmosphere and warmer ocean surface temperatures can lead to increased wind speeds in tropical storms. Rising sea levels expose higher locations not usually subjected to the power of the sea and to the erosive forces of waves and currents.
+            <br>
+            Climate variability (dry cycles to wet cycles) and land-use change play a significant role, but there is a large amount of uncertainty around the flood quantile estimates (the value of discharge corresponding to the 100-year flood), particularly if there isn’t a long record of observed data at a stream location. Learn more: The 100-Year Flood The 100-Year Flood--It's All About Chance
+            <br>
+            Scientists have predicted that long-term effects of climate change will include a decrease in sea ice and an increase in permafrost thawing, an increase in heat waves and heavy precipitation, and decreased water resources in semi-arid regions.
+       <br>
+       Below are some of the regional impacts of global change forecast by the Intergovernmental Panel on Climate Change:
+        </p>
+      <ul>
+        <li>North America: Decreasing snowpack in the western mountains; 5-20 percent increase in yields of rain-fed agriculture in some regions; increased frequency, intensity and duration of heat waves in cities that currently experience them.</li>
+        <li>Latin America: Gradual replacement of tropical forest by savannah in eastern Amazonia; risk of significant biodiversity loss through species extinction in many tropical areas; significant changes in water availability for human consumption, agriculture and energy generation.</li>
+        <li>Europe: Increased risk of inland flash floods; more frequent coastal flooding and increased erosion from storms and sea level rise; glacial retreat in mountainous areas; reduced snow cover and winter tourism; extensive species losses; reductions of crop productivity in southern Europe.</li>
+        <li>Africa: Between 75 and 250 million people are projected to be exposed to increased water stress; yields from rain-fed agriculture could be reduced by up to 50 percent in some regions; agricultural production, including access to food, may be severely compromised.</li>
+        <li>Asia: Freshwater availability projected to decrease in Central, South, East and Southeast Asia by the 2050s; coastal areas will be at risk due to increased flooding; death rate from disease associated with floods and droughts expected to rise in some regions.</li>
+     </ul><br>
+<p style="text-align: justify; font-size:larger;">
+        Weather refers to short term atmospheric conditions while climate is the weather of a specific region averaged over a long period of time. Climate change refers to long-term changes.
+    <br>
+    The link between land use and the climate is complex. First, land cover--as shaped by land use practices--affects the global concentration of greenhouse gases. Second, while land use change is an important driver of climate change, a changing climate can lead to changes in land use and land cover. For example, farmers might shift from their customary crops to crops that will have higher economic return under changing climatic conditions. Higher temperatures affect mountain snowpack and vegetation cover as well as water needed for irrigation. The understanding of the interactions between climate and land use change is improving but continued scientific investigation is needed.   
+    <br>
+    The scientific community is certain that the Earth's climate is changing because of the trends that we see in the instrumented climate record and the changes that have been observed in physical and biological systems. The instrumental record of climate change is derived from thousands of temperature and precipitation recording stations around the world. We have very high confidence in these records as a whole. The evidence of a warming trend over the past century is unequivocal.  
+
+Many types of instrumental records point to a climate warming trend. Our streamflow records show an earlier peak in spring runoff; borehole temperature records in Alaskan permafrost as well as water temperature records on land and sea show the warming trend. The physical and biological changes that confirm climate warming include the rate of retreat in glaciers around the world, the intensification of rainfall events, changes in the timing of the leafing out of plants and the arrival of spring migrant birds, and shifting of the range of some species.      
+</p><br>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+<div class="container-fluid p-2" style="background-color:black">
+    <div class="row">
+        <div class="col-3 text-light">
+            <h2 class="text-end p-3 mt-5">
+               Disasters: </h2>
+
+        </div>
+        <div class="col-9 text-light">
+            {% for i in disaster %}
+          
+            <hr class="mt-5">
+              
+            <div class="conatiner">
+
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{i.image.url}}" alt="" width="100%"  style="border-radius: 40px;" >
+                    </div>
+
+                    <div class="col-9">
+                        <h3 style="color:rgba(100, 131, 230) ;">{{i.title}}</h3>
+                        <p>
+                            {{i.description | truncatewords:1500}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+        
+            {% endfor %}
+        </div>
+    </div>        
+
+</div>
+      
+    
+<h1 class="text-center mt-4 pt-3">TALKINGS O<span style="border-bottom: 10px double #36AF36">N CLI</span>MATE CHANGE</h1>
+  
+
+
+<div class="row pt-5 mt-5">
+  
+  <div class="col-1"></div>
+  <div class="col-10">
+<h1>
+   {% include 'testimonial.html' with rev=reviews only %}
+</h1>
+
+  </div>
+  <div class="col-11"></div>
+ 
+ </div>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+{% block title %}
+profile
+{% endblock %}
+
+{% block content  %}
+<title>profile</title>
+<h1 class="mb-4">Profile details</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-7 border p-3 ps-2 shadow">
+        
+        <label for="">Name:</label>
+        <h5>{{user.fname}} {{user.lname}}</h5>
+       
+        
+        <label for="">Email:</label>
+        <h5>{{user.user_email}}</h5>
+        <label for="">DOB:</label>
+        <h5>23/4/2000</h5>
+        
+        <label for="">Adress:</label>
+        <h5>somewhere in amritsar</h5>
+        
+        <label for="">City:</label>
+        <h5>amritsar</h5>
+        
+        <label for="">Pincode:</label>
+        <h5>1438987</h5>
+                </div> 
+   <div class="col-4 text-center">
+    <img src="{%static '2.png' %}" alt="" class=" border rounded-circle ms-4" style="height: 55%; width:75%">
+    <button class="btn btn-primary btn-lg mt-3 ms-4">Edit profile </button>   
+</div>
+    
+
+
+
+
+   </div>
+
+    </div>
+ 
+
+
+</div>
+
+
+
+{% endblock %}
