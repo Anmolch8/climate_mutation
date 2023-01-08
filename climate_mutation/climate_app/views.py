@@ -9,7 +9,8 @@ from climate_app import functions
 from climate_app import per_functions
 from climate_app import countries_years
 from base64 import b64encode
-from django.views.decorators.cache import cache_control  
+from django.views.decorators.cache import cache_control 
+from django.core.files.storage import FileSystemStorage 
 
 import requests
 import random
@@ -17,7 +18,6 @@ import random
 # Create your views here.
 
 from django.contrib import messages
-
 @cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def index(request):
     reviews=review.objects.all()
@@ -31,13 +31,16 @@ def index(request):
     try:
      nasares=requests.get('https://api.nasa.gov/planetary/apod?api_key=ZQm1OlM8i5SkkXGsbUYhOH2NGhJyAdWjMr9TH6gM').json()  
      response=lambda:requests.get('https://api.unsplash.com/photos/random?query=climate&client_id=8TYss-fyoFCbM5KW5ctaKZViRgptiSMSirRXKYmBNi4').json()
-   
+     print(nasares['hdurl'])
+
      l=[response()['urls']['full'] for x in range(0,2)]
-     return render(request,'index.html',{'images':l,'npic':nasares['hdurl'],'reviews':reviews,'exps':experts,'bgs':blogs,'header':dashboard})
+     return render(request,'index.html',{'images':l,'nnpic':nasares['hdurl'],'reviews':reviews,'exps':experts,'bgs':blogs,'header':dashboard,'index':True})
     except:
-        return render(request,'index.html',{'reviews':reviews,'exps':experts,'bgs':blogs})
+        return render(request,'index.html',{'reviews':reviews,'exps':experts,'bgs':blogs,'header':dashboard,'index':True})
 def sidebar(request):
     all_entities=entitie.objects.all()
+    if not request.session.has_key('email'):
+         return redirect('index')
     return render(request,'sidebar.html',{'datasets':all_entities})    
 def myreview(request):
     if not request.session.has_key('email'):
@@ -53,19 +56,23 @@ def myreview(request):
         return render(request,'review.html',{'msg':msg})
     else:
         return render(request,'review.html',{})
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def my_profile_details(request):
     if not request.session.has_key('email'):
-        return redirect('/login')    
+        return redirect('login')    
     all_entities=entitie.objects.all()      
     user=user_register.objects.get(user_email=request.session['email'])
 
     return render(request, 'myprofiledetails.html',{'user':user,'datasets':all_entities})
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def edit_profile(request):
     if not request.session.has_key('email'):
         return render(request,'login.html',{'data':'loggedout'})
     all_entities=entitie.objects.all()       
     user=user_register.objects.get(user_email=request.session['email'])
     if request.method=='POST':
+         pic=request.FILES['prpics']
+         user.profile_pic=pic
          user.fname=request.POST.get('firstname')
          user.lname=request.POST.get('lastname')
          user.dob=request.POST.get('dob')
@@ -73,17 +80,32 @@ def edit_profile(request):
          user.city=request.POST.get('city')
          user.pincode=request.POST.get('pincode')
          user.save()
+         
          return render(request, 'edit_profile.html',{'user':user,'added':'data added','datasets':all_entities})    
              
     
    
     return render(request, 'edit_profile.html',{'user':user,'datasets':all_entities}) 
+# def add_profile_pic(request):
+#     if not request.session.has_key('email'):
+#         return redirect('login') 
+#     user=user_register.objects.get(user_email=request.session['email'])
+
+#     if request.method==POST:
+#         user.profile_pic=request.POST.get('prpic')
+#         user.save()
+#         return render(request, 'edit_profile.html',{'user':user,'added':'data added','datasets':all_entities})    
+
+def dashboard_welcome(request):
+    all_entities=entitie.objects.all()     
+    return render(request,'dash-board.html',{'datasets':all_entities})
 
 def logout(request):
     if not request.session.has_key('email'):
-        return redirect('/login')
+        return redirect('/login')    
     del request.session['email']
-    return redirect('/login')          
+    return redirect('/login')     
+
 def login(request):
    if request.method=='POST': 
     get_email=request.POST.get('login_name')
@@ -99,7 +121,7 @@ def login(request):
 
 
 def head_foot(request):
-    return render(request,'head_foot.html')
+      return render(request,'head_foot.html')
        
 def register(request):
  if request.POST.get('user_email')  in list(user_register.objects.filter(user_email=request.POST.get('user_email'))):
@@ -120,7 +142,8 @@ def register(request):
     else:
        return render(request, 'register.html')
  else:
-    return render(request,'register.html',{'m1':3})          
+    return render(request,'register.html',{'m1':3})      
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def changepass(request):
     if not request.session.has_key('email'):
         return redirect('/login')
@@ -173,7 +196,7 @@ def allblogs(request):
     
 def h_support(request):
     if not request.session.has_key('email'):
-        return redirect('/login')
+        return redirect('login')
     user=user_register.objects.get(user_email=request.session['email'])
     user_help=help_support()
     if request.method=='POST':
@@ -246,7 +269,10 @@ def download(request, path):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404  
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def showdataset(request,id):
+    if not request.session.has_key('email'):
+        return redirect('index')
     ds=dataset.objects.get(entity_id=id)
     ds_columns=ds.columns_names.split(',')
     col_des=ds.columns_description.split(',')
@@ -254,15 +280,21 @@ def showdataset(request,id):
     all_entities=entitie.objects.all()  
     return render(request,'dataset.html',{'data':ds,'datasets':all_entities,'ds_col_des':ds_col_des})    
 
-
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def showvisuals(request,id):
+    if not request.session.has_key('email'):
+        return redirect('index')
     ds=visuals.objects.filter(entity_id=id)
     all_entities=entitie.objects.all()  
-    return render(request,'visualization.html',{'data':ds,'datasets':all_entities})    
+    return render(request,'visualization.html',{'data':ds,'datasets':all_entities})  
+@cache_control(no_cache=True, must_revalidate=True,no_store=True) 
 def showperdictions(request,id):
+    if not request.session.has_key('email'):
+        return redirect('index')
     ds=perdiction.objects.filter(entity_id=id)
     all_entities=entitie.objects.all()  
-    return render(request,'perdiction.html',{'data':ds,'datasets':all_entities})        
+    return render(request,'perdiction.html',{'data':ds,'datasets':all_entities})   
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def all_visualization(request,l):
     # try:
        all_entities=entitie.objects.all()
@@ -288,6 +320,7 @@ def all_visualization(request,l):
        elif l== 'least_consumption_country':
             if request.method=='POST':
                 graphic=functions.least_ozone(request)
+                
                 return render(request,'vizs/least_consumption_country.html',{'datasets':all_entities,'graphic':graphic.decode('utf8'),'years':countries_years.year_dic['ozoneyears']})    
             if request.method =='GET':
                  return render(request,'vizs/least_consumption_country.html',{'datasets':all_entities,'years':countries_years.year_dic['ozoneyears']})    
@@ -341,10 +374,10 @@ def all_visualization(request,l):
        elif l== 'air_max_deaths_cause_or_country':
             if request.method=='GET':
                 graphic=functions.air_max_deaths_cause_or_cn(request)
-                return render(request,'vizs/air_max_deaths_cause_or_country.html',{'datasets':all_entities,'graphic':graphic.decode('utf8')})    
+                return render(request,'vizs/air_max_deaths_cause_or_country.html',{'datasets':all_entities,'graphic':graphic.decode('utf8'),'countries':countries_years.countries_dic['air_pollution_countries']})    
             if request.method=='POST':
                 graphic=functions.air_max_deaths_cause_or_cn(request)
-                return render(request,'vizs/air_max_deaths_cause_or_country.html',{'datasets':all_entities,'graphic':graphic.decode('utf8'),'countries':countries_years.countries_dic['air_pollution_countries'],'countries':countries_years.countries_dic['unsafe_water'],'years':countries_years.year_dic['unsafe_water']})                   
+                return render(request,'vizs/air_max_deaths_cause_or_country.html',{'datasets':all_entities,'graphic':graphic.decode('utf8'),'countries':countries_years.countries_dic['air_pollution_countries']})                   
        elif l== 'water_deaths_country_allyears_range':
             if request.method=='GET':
                 graphic=functions.water_deaths_all_years_range_country(request)
@@ -372,12 +405,14 @@ def all_visualization(request,l):
             if request.method=='GET':
                 functions.no2_graph(request)
                 return render(request,'vizs/no2_analysis.html',{'datasets':all_entities})       
+                
        else:
-           return HttpResponse('something')
+           return HttpResponse('under construction')
+              
     # except :
     #     return redirect('login')            
 def all_perdictions(request,l):
-    try:
+    
        all_entities=entitie.objects.all()
        print(l)         
        if l=='oz_cn_per':
@@ -435,7 +470,7 @@ def all_perdictions(request,l):
                  return render(request,'pers/un_wt_per',{'datasets':all_entities,'countries':countries_years.countries_dic['unsafe_water']})                           
            else:
                 raise Http404  
-    except:
-        return redirect('login')                      
+    # except:
+    #     return redirect('login')                      
 
              

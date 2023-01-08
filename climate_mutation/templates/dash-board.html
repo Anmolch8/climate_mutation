@@ -1,0 +1,79 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  ul .aa1{color:rgb(13, 13, 12);}
+  ul  .aa1:hover{color: rgb(44, 105, 44) !important ; font-size: 15px !important;}
+ </style> 
+
+<h1 class="text-center " style="color: rgba(74, 72, 72, 0.861); text-shadow: 0px 0px 5px green;">
+    Welcome to dashboard
+</h1>
+<hr>
+<br>
+
+    <div class="container-fluid">
+        <div class="conatiner">
+     <div class="row ">
+        <div class="col-4">
+            <div class="card shadow alert alert-success">
+                <div class="card-body ">
+                  <h4 class="text-center pb-3" style="border-bottom: 2px solid black;">Total Datasets</h4>
+                  <hr>
+                  <h1 style="font-size: 100px;" class="text-center">7</h1>
+                  <ul style="list-style-type:none" >
+                  {% for i in datasets %}
+                  <a href="{% url 'dataset' i.entity_id %}"  class="aa1"><li class=" pb-3 ps-0" >{{i.name}} dataset</li></a>
+                  {% endfor %}
+                </ul>
+                </div>
+              </div>
+        </div>
+        <div class="col-4">
+            <div class="card shadow pt-3 pb-3 alert-success">
+                <div class="card-body ">
+                  <h4 class="text-center pb-3" style="border-bottom: 2px solid black;">Total Visualizations </h4>
+                  <hr>
+                  <h1 style="font-size: 100px;" class="text-center">16</h1>
+                  <ul style="list-style-type:none" >
+                  {% for i in datasets %}
+                  <a href="{% url 'visuals' i.entity_id %}"  class="aa1"><li class=" pb-3 ps-0" >{{i.name}} visualization</li></a>
+                  {% endfor %}
+                </ul>
+                </div>
+              </div>
+            
+        </div>
+        <div class="col-4">
+            <div class="card shadow alert alert-success ">
+                <div class="card-body">
+                  <h4 class="text-center pb-3" style="border-bottom: 2px solid black;">Total Perdictions </h4>
+                  
+                  <center><span style="font-size: 100px;" class="text-center">7</span></center>
+                 <ul style="list-style-type:none" >
+                  {% for i in datasets %}
+                  <a href="{% url 'perdictions' i.entity_id %}"    class="aa1" ><li  class=" pb-3 ps-0" >{{i.name}} prediction</li></a>
+                  
+                  {% endfor %}
+                </ul>
+           
+                </div>
+              </div>
+
+        </div>
+      
+       
+
+     </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+{% endblock content %}

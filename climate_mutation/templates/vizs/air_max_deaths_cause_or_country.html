@@ -2,12 +2,12 @@
 
 
 {% block heading %}
-cause of air pollution leading to max deaths
+Cause of air pollution leading to max deaths in a country
 {% endblock %}
 
 {% block col1 %}
-select country
-{% include 'vizs/countries.html' with type='radio' %}
+
+{% include 'vizs/countries.html' with type='radio' summary='Select country' %}
 
 {% endblock %}
 {% block col2 %}
@@ -32,8 +32,9 @@ select country
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
-                    {% if graphic %}
+        {% if graphic %}
+                <div class="col-md-12 text-center p-5 alert"  style="background-color:#6a8c793f">
+            
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 </div>

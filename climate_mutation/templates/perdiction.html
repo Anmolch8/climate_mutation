@@ -1,7 +1,8 @@
 {% extends 'sidebar.html' %}
 {%load static%}
 {% block content%}
-
+<h1 class="text-center " style="color: rgba(74, 72, 72, 0.861); text-shadow: 0px 0px 5px green;">{{data.0.entity_id}} perdiction</h1>
+<hr/>
 {% for perdiction in data%}
 <div class="conatiner">
     <div class="row alert alert-success">

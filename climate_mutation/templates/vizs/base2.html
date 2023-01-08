@@ -2,17 +2,18 @@
 {% load static %}
 
 {% block content %}
-<h1>
+<h1 class="text-center " style="color: rgba(74, 72, 72, 0.861); text-shadow: 0px 0px 5px green;">
     {% block heading %}
     {% endblock %}
 </h1>
+<hr>
 <form action="" method="post">
     {% csrf_token %}
 <div class="container-fluid">
     <div class="container">
     <div class="row alert alert-success">
     <div class="col-3">
-{% include 'vizs/countries.html' with type='checkbox' %}
+{% include 'vizs/countries.html' with type='checkbox' summary='Select countries' %}
     </div>
     <div class="col-3">
         {% block inputname1 %}
@@ -32,7 +33,7 @@
 
     <div class="col-3">
         <button type="submit" class="btn btn-success btn-secondary mt-3">
-   submit
+   Submit
         </button>
  
     </div>
@@ -58,12 +59,13 @@
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
-                    {% if graphic %}
+        {% if graphic %}
+                <div class="col-md-12 text-center p-5 alert"  style="background-color:#6a8c793f">
+                    
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
-                    {% endif %}
+                   
                 </div>
-          
+                {% endif %}
         </div>
       </div>
      

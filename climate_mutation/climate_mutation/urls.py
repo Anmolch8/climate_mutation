@@ -51,6 +51,7 @@ urlpatterns = [
     path('dataset/download/<str:path>',views.download,name='download'),
     path('perdictions/<int:id>',views.showperdictions,name='perdictions'),
     path('perdictions/<str:l>',views.all_perdictions),
+    path('dash-board',views.dashboard_welcome,name='dash')
 
   
 

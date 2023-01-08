@@ -2,7 +2,7 @@
 <html lang="en">
   {% extends 'head_foot.html' %}
   {% block content %}
-{% load static%}
+{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,13 +21,14 @@
   <div class="container-fluid primarygradient pt-5 pb-5 ">
     <div class="container back  " style="border-radius:20px">
       <div class="row pt-5 pb-5" style="background-color: rgba(255, 255, 255, 0.418);border-radius:20px">
-        <div class="col-7" >
-          <h1 style="color: green;margin-top: 15%; " class="text-center ms-5">LOGO</h1>
-          <p class="fw-bolder ms-5"> maiores? Cupiditate optio quasi ex! Id expedita illum accusamus facere doloremque,
-            consequuntur, eveniet exercitationem atque dolore aliquid minima nihil quam quo tenetur voluptate,
-            temporibus ad impedit. Omnis quam natus ipsum reiciendis voluptas? Reiciendis dolores adipisci ab beatae
-            provident neque maiores porro, eligendi repellat. Ipsa culpa consequuntur minima, amet beatae veniam nostrum
-            repellendus distinctio non aspernatur necessi</p>
+        <div class="col-7 text-center ms-5" >
+          <img src="{% static 'earth.png' %}" style="color: green;margin-top: 10%;  height: 100px;" >
+          <p class="fw-bolder ms-5"> Ready to save planet! we show many reasons 
+            why and how to save it from futute effects of climate change get visualizations perdictions on 
+            climate change lets get in and explore the state of our planet earth <br>
+
+            Climate change is the greatest threat to our existence in our short history on this planet. Nobody's going to buy their way out of its effects.” – Mark Ruffalo 
+          </p>
         </div>
         <div class="col-4">
           <div class="container login text-center pt-5 ">
@@ -49,9 +50,9 @@
                 In</button>
             </form><br>
             <h5>or</h5>
-            <button class="btn btn-secondary bg-light text-dark mt-3"
-              style="border-radius: 30px; width: 290px;">Sign in with Google</button>
-            <h6 class=" mt-3 " style="color: grey; font-weight:100; font-size:smaller;">Don't have an
+            <!-- <button class="btn btn-secondary bg-light text-dark mt-3"
+              style="border-radius: 30px; width: 290px;">Sign in with Google</button> -->
+            <h6 class=" mt-3 " style="color: grey; font-weight:100; font-size:larger;">Don't have an
               account?
               <a href="{% url 'register' %}" style="text-decoration: none;color: green; font-weight: bold;">Create</a>
             </h6>

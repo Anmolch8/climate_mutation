@@ -4,19 +4,23 @@
 
 
 {% block heading %}
-ozone depletion substance consumption perdiction
+Ozone depletion substance consumption perdiction
 {% endblock heading %}
 
 
 {% block col1 %}
-{% include '../vizs/countries.html' with type='radio' %} 
+{% include '../vizs/countries.html' with type='radio' summary='Select a country'%} 
  
 {% endblock col1 %}
 
 {% block col2 %}
-<button type="submit" class="btn btn-success btn-secondary mt-3">Submit</button>
-
+Number of years
+<input type="number" class="form-control" min="5" max="30" name="num">
 {% endblock col2 %}
+{% block col3 %}
+<button type="submit" class="btn btn-success btn-secondary mt-4 ">Predict</button>
+
+{% endblock col3 %}
 {% block graph %}
 
 <div class="content-inner ">
@@ -36,9 +40,10 @@ ozone depletion substance consumption perdiction
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
+        {% if graphic %}
+                <div class="col-md-12 text-center pt-5"  style="background-color:#6a8c793f">
      
-                    {% if graphic %}
+                    
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 

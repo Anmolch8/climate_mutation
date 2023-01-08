@@ -9,10 +9,11 @@ edit profile
 {% if added == 'data added' %}
                     <h5 style="color:red">data added</h5>
                     {% endif %}
+                    <form action="" method="post" enctype="multipart/form-data">
 <div class="container">
     <div class="row">
         <div class="col-8 border p-3 ps-2 shadow p-3">
-            <form action="" method="post">
+        
                 {% csrf_token %}
                 <div class="row">
                     
@@ -53,15 +54,27 @@ edit profile
              
 <br>
 
-          <button class="btn btn-primary">Edit details</button>      
+<button class="btn btn-primary">Edit details</button>      
+
+  
+
             </div>
-            
-        </form>
+        </form>     
+    
                
-   <div class="col-4 text-center">
-    <img src="{%static '2.png' %}" alt="" class=" border rounded-circle ms-4" style="height: 55%; width:75%">
-    <button class="btn btn-primary btn-lg mt-3 ms-4">Edit profile pic </button>   
-</div>
+ <div class="col-4 text-center ">
+    {% if user.profile_pic == '' %}
+    <img src="{%static 'pr.jpg' %}" alt="" class=" border rounded-circle ms-4 "  style="height: 55%; width:75%">
+    {% else %}
+    <img src="{{user.profile_pic.url}}" alt="no pic" class=" border rounded-circle ms-4 "  style="height: 55%; width:75%">
+    {% endif %} 
+    <input name="prpics" type="file" class="form-control formfile" > 
+
+    </div>
+   
+
+
+
     
 
 
@@ -71,9 +84,7 @@ edit profile
 
     </div>
  
-
-
-</div>
+                   
 
 
 

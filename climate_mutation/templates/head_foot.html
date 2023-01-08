@@ -12,7 +12,7 @@
   </title>
   <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{%static 'css/aos.css' %}">
-  <link rel="stylesheet" href="{%static 'css/themeclr.css' %}">
+   <link rel="stylesheet" href="{%static 'css/themeclr.css' %}"> 
   <link rel="stylesheet" href="{%static 'icofont/icofont.min.css'%}">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -23,7 +23,8 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand  fs-4" href="{% url 'index' %}" style="color:rgb(54, 175, 54);">Climate Mutation</a>
+      <a href="" class="ps-3"><img src="{% static 'earth.png'%}" alt="" height="50px"></a>
+      <a class="navbar-brand  fs-4 ps-2" href="{% url 'index' %}" style="color:rgb(54, 175, 54);">Climate Mutation</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,7 +46,7 @@
             <a class="nav-link me-3" style="color:rgb(54, 175, 54);" href="{% url 'contactus' %}">Contact us</a>
           </li>
           {% block dashboard %}
-          {% endblock %}
+        {% endblock %}
         </ul>
         
         
@@ -66,16 +67,16 @@
     <div class=" row text-light pb-5" >
       <div class="col-3">
         <h4 class="text-light">About <span style="color:rgb(54, 175, 54);">us</span></h4>
-        <p class="text-light">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad ipsum accusamus impedit iusto quam quibusdam
-          harum tempore fugit iure mollitia, magni libero consequatur inventore!
+        <p class="text-light"> we show many reasons 
+          why and how to save it from futute effects of climate change get visualizations perdictions on 
+          climate change explore the state of our planet earth
         </p>
        <a href="https://www.facebook.com/login/" style="text-decoration: None;"> <i class="icofont-facebook text-light icofont-1x border p-2 rounded-circle" ></i></a>
        <a href="https://www.youtube.com/" style="text-decoration: None;"> <i class="icofont-youtube-play text-light icofont-1x border p-2 rounded-circle m-2"></i></a>
         <a href="https://www.instagram.com/accounts/login/" style="text-decoration: None;">  <i class="icofont-instagram text-light icofont-1x border p-2 rounded-circle " ></i></a>
       </div>
       <div class="col-3">
-        <h5 class="text-light"> Get In<span style="color:rgb(54, 175, 54);">Touch</span> </h5>
+        <h4 class="text-light"> Get In<span style="color:rgb(54, 175, 54);">  touch</span> </h4>
         <i class="icofont-phone text-light icofont-1x">&nbsp;&nbsp;8798453456</i><br>
         <i class="icofont-phone text-light icofont-1x">&nbsp;&nbsp;7689753423</i><br>
 
@@ -84,21 +85,30 @@
 
       </div>
       <div class="col-3">
-        <h5 class="text-light">Useful<span style="color:rgb(54, 175, 54);">Useful Links</span></h5>
+        <h4 class="text-light">Useful<span style="color:rgb(54, 175, 54);">  links</span></h4>
        <a href="{% url 'blog' %}" style="text-decoration: None;"> <i class="icofont-rounded-right text-light">&nbsp;Blogs</i><br></a>
        <a href="{% url 'faqs' %}" style="text-decoration: None;"> <i class="icofont-rounded-right text-light">&nbsp;Faqs</i><br></a>
        <a href="{% url 'ngo' %}" style="text-decoration: None;"> <i class="icofont-rounded-right text-light">&nbsp;Ngos</i><br></a>
-       <a href="{% url 'contactus' %}" style="text-decoration: None;"> <i class="icofont-rounded-right text-light">&nbsp;contact us</i><br></a>
-       
+       {% if index == True %}
+        <a href="{% url 'contactus' %}" style="text-decoration: None;"> <i class="icofont-rounded-right text-light">&nbsp;contact us</i><br></a> 
+      {% endif %}
       </div>
-      <div class="col-3">
-        <h5 class="text-light">Latest <span style="color:rgb(54, 175, 54);">Images</span></h5>
-
-      </div>
-
+    {% if index == True %}
+   
+      {% block im %}
+      {% endblock %}
+    
+    {% else %}
+    <div class="col-3">
+    
+      <h4 class="text-light">Any type of<span style="color:rgb(54, 175, 54);"> query</span></h4>
+      <a class="btn btn-secondary bg-green m-4 p-3" href="{% url 'contactus' %}">Post a question</a>
+      
     </div>
-
+{% endif %}
+    
 </div>
+    </div>
 <div class="row pt-4 pb-4 p-5 text-center text-light" style="background-color:rgb(54, 175, 54);">
   <div class="col-12">
       &copy;Copyright 2022

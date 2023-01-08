@@ -3,30 +3,30 @@
 
 
 {% block heading %}
-top countries with maximum  or minimum deaths in a year due to air pollution
+Top countries with maximum  or minimum deaths in a year due to air pollution
 {% endblock %}
 
 {% block col1 %}
-select year
+Select year
 <select name="year" class="form-select">
     {% include 'vizs/years.html' %}
 </select>  
 {% endblock %}
 
 {% block col2 %}
-<span class="ms-4">number of countries</span>
-<input type="number" class="form-control ms-4" min="1" name="num"  required>
+<span >Number of countries</span>
+<input type="number" class="form-control  me-5" min="1" name="num"  required>
 {% endblock %}
 {% block col3 %}
 
 <ul class="list-group" style="text-align: center;">
     <li class="list-group-item border-0">
       <input class="form-check-input" type="radio" value="maximum" name="order">
-      <label class="form-check-label" >maximum</label>
+      <label class="form-check-label" >Maximum</label>
     </li>
     <li class="list-group-item border-0">
       <input class="form-check-input" type="radio" value="minimum" name="order" >
-      <label class="form-check-label " >minimum</label>
+      <label class="form-check-label " >Minimum</label>
     </li>
  
   </ul>
@@ -34,6 +34,7 @@ select year
 {% block col4 %}
   <button type="submit" class="btn btn-success btn-secondary mt-3">Submit</button>
 {% endblock %}
+
 
 {% block graph %}
 <div class="content-inner ">
@@ -53,8 +54,9 @@ select year
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
-                    {% if graphic %}
+        {% if graphic %}
+                <div class="col-md-12 text-center p-5 alert"  style="background-color:#6a8c793f">
+                    
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 </div>

@@ -3,11 +3,11 @@
 
 {% block heading %}
 
-comparison for diff cause of air pollution for  one country in range of years
+Comparison for diff cause of air pollution for  one country in range of years
 {% endblock %}
 
 {% block col1 %}
-from year
+From year
 <select name="year1" class="form-select">
     {% include 'vizs/years.html' %}
 </select>
@@ -16,41 +16,78 @@ from year
 
 
 {% block col2 %}
-to year
+To year
 <select name="year2" class="form-select">
     {% include 'vizs/years.html' %}
 </select>
 {% endblock %}
 
 {% block col3 %}
-select country
-{% include 'vizs/countries.html' with type='radio' %}
+{% include 'vizs/countries.html' with type='radio' summary='Select country' %}
 
 {% endblock %}
 
 {% block col4 %}
-<details >
-    <summary>select cause</summary>
+<!-- <details >
+    <summary>Select cause</summary>
     <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
-        <li class="list-group-item border-0">
+        <li class="list-group-item border-0 ps-4">
           <input class="form-check-input" type="radio" value="by_solidfuels" name="cause" >
           <label class="form-check-label" for="firstradio"> by solid fuels</label>
         </li>
         
-         <li class="list-group-item border-0">
-          <input class="form-check-input" type="radio" value="by_ambient_particulate_matter" name="cause" >
+         <li class="list-group-item border-0 ps-4">
+          <input class="form-check-input" type="radio" value="by_particulate_matter" name="cause" >
           <label class="form-check-label" for="secondradio">by partuiculate matter</label>
         </li>
-        <li class="list-group-item border-0">
+        <li class="list-group-item border-0 ps-4">
           <input class="form-check-input" type="radio" value="by_ambient_ozone" name="cause"  >
           <label class="form-check-label" for="thirdradio">by ambient ozone</label>
         </li>
-        <li class="list-group-item border-0">
+        <li class="list-group-item border-0 ps-4">
             <input class="form-check-input" type="radio" value="by_all_causes" name="cause"  >
             <label class="form-check-label" for="fourthradio">by all causes</label>
           </li>
       </ul>
-</details>
+</details> -->
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne1">
+      <button  class="accordion-button" type="button" style="color: black;" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+      Select cause
+      </button>
+    </h2>
+    <div id="collapseOne1" class="accordion-collapse collapse " aria-labelledby="headingOne1" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
+          <li class="list-group-item border-0 ps-1">
+            <input class="form-check-input" type="radio" value="by_solidfuels" name="cause" >
+            <label class="form-check-label" for="firstradio">by solid fuels</label>
+          </li>
+          
+           <li class="list-group-item border-0 ps-1">
+            <input class="form-check-input" type="radio" value="by_particulate_matter" name="cause" >
+            <label class="form-check-label" for="secondradio">by partuiculate matter</label>
+          </li>
+          <li class="list-group-item border-0 ps-1">
+            <input class="form-check-input" type="radio" value="by_ambient_ozone" name="cause"  >
+            <label class="form-check-label" for="thirdradio">by ambient ozone</label>
+          </li>
+          <li class="list-group-item border-0 ps-1">
+              <input class="form-check-input" type="radio" value="by_all_causes" name="cause"  >
+              <label class="form-check-label" for="fourthradio">by all causes</label>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+ 
+</div>
+
+
+{% endblock %}
+{% block col5 %}
 <button type="submit" class="btn btn-success btn-secondary mt-3">Submit</button>
 
 {% endblock %}
@@ -73,8 +110,9 @@ select country
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
-                    {% if graphic %}
+        {% if graphic %}
+                <div class="col-md-12 text-center p-5 alert"  style="background-color:#6a8c793f" >
+                   
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 </div>

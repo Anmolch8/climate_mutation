@@ -81,25 +81,37 @@
         aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
         aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+        aria-label="Slide 4"></button>
     </div>
 
 
 
     <div class="carousel-inner">
-      <div class="carousel-item active" style="background-image: url({{npic}}); height:720px ; background-size: cover;">
-        <h1 class="text-center " style="margin-top:250px ; font-size: 80px;"> Climate change heading</h1>
-        <h3 class="text-center">Climate change heading 2</h3>
+      <div class="carousel-item  active" style="background-image: url({{images.0}}); height:720px ; background-size: cover;">
+        <h1 class="text-center " style="margin-top:250px ; font-size: 80px;"> Save nature save future</h1>
+        <h3 class="text-center">It's time to deal with it</h3>
       </div>
-  
-       <div class="carousel-item " style="background-image: url({{images.0}}); height:720px ; background-size: cover;">
-        <h1 class="text-center " style="margin-top:250px ; font-size: 80px;"> Climate change heading</h1>
-        <h3 class="text-center">Climate change heading 1</h3>
-      </div>
-      <div class="carousel-item" style="background-image: url({{images.1}}); height:720px ; background-size: cover;">
-        <h1 class="text-center " style="margin-top:250px ; font-size: 80px;"> Climate change heading</h1>
-        <h3 class="text-center">Climate change heading 0</h3>
+       <div class="carousel-item " style=" height:720px ; background-size: cover; ">
+         <video src="{% static 'columbia_glacier_v2.mp4' %}" autoplay muted controls loop></video> 
+        <!-- <h1 class="text-center " style="margin-top:250px ; font-size: 80px;"></h1> -->
+     
       </div> 
+      <div class="carousel-item" style="background-image: url({{images.1}}); height:720px ; background-size: cover;">
+        <h1 class="text-center " style="margin-top:250px ; font-size: 80px;">Stop polluting, it will cost extra</h1>
+        <h3 class="text-center">Will be paid heavly by our future generations </h3>
+      </div> 
+      <div class="carousel-item " style="background-image: url({{nnpic}}); height:720px ; background-size: cover;">
+        <!-- <h1 class="text-center " style="margin-top:250px ; font-size: 80px;"> Climate change heading</h1> -->
+        <!-- <h3 class="text-center"></h3> -->
+      </div>
     </div>
+    
+  
+  
+    
+      
+    
 
 
     <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators"
@@ -370,7 +382,7 @@ Examples of greenhouse gas emissions that are causing climate change include car
 {% if header == True %}
        
         <form class="d-flex">
-          <a class="btn btn-outline-success me-3" type="submit" style="color:rgb(54, 175, 54);" href="{% url 'myprofile' %}">Go to dashboard</a>
+          <a class="btn btn-outline-success me-3" type="submit" style="color:rgb(54, 175, 54);" href="{% url 'dash' %}">Go to dashboard</a>
        
           <a class="btn btn-outline-success" type="submit" style="color:rgb(54, 175, 54);" href="{% url 'logout' %}">Logout</a>
         </form>
@@ -384,6 +396,14 @@ Examples of greenhouse gas emissions that are causing climate change include car
         {% endif %}
 
 {% endblock %}
+{% block im %}
+
+<div class="col-3">
+  <h5 class="text-light">Image of<span style="color:rgb(54, 175, 54);">  the day</span></h5>
+  <a href="{{nnpic}}" target="_blank"><img width="100%"  height="70%" src="{{nnpic}}" class="border rounded"></a>
+  
+</div>
+{% endblock %} 
 
 
 

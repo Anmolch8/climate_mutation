@@ -104,6 +104,7 @@ class user_register(models.Model):
     address=models.CharField(max_length=5000,blank=True,null=True)
     city=models.CharField(max_length=500,blank=True,null=True)
     pincode=models.CharField(max_length=10,blank=True,null=True)
+    profile_pic=models.FileField(upload_to='profile_pics',blank=True,null=True)
 
     #confirm_password=models.CharField(max_length=16)
     def __str__(self):

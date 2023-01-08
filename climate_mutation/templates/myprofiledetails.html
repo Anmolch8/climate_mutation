@@ -29,9 +29,14 @@ profile
         <label for="">Pincode:</label>
         <h5>1438987</h5>
                 </div> 
-   <div class="col-4 text-center">
-    <img src="{%static '2.png' %}" alt="" class=" border rounded-circle ms-4" style="height: 55%; width:75%">
-    <button class="btn btn-primary btn-lg mt-3 ms-4">Edit profile </button>   
+   <div class="col-3 text-center">
+    
+    {% if user.profile_pic == '' %}
+    <img src="{%static 'pr.jpg' %}" alt="" class=" border rounded-circle ms-4 "  style="height: 55%; width:75%">
+    {% else %}
+    <img src="{{user.profile_pic.url}}" alt="" class=" border rounded-circle ms-4 "  style="height: 55%; width:75%">
+    {% endif %} 
+    <a href="{% url 'editprofile' %}" class="btn btn-primary btn-lg mt-3 ms-4">Edit profile </a>   
 </div>
     
 

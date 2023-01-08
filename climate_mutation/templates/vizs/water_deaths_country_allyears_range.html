@@ -3,7 +3,7 @@
 
 
 {% block heading %}
-number of deaths from unsafe water in all years or in country in year range
+Number of deaths from unsafe water in all years or in country in year range
 {% endblock %}
 
 {% block col1 %}
@@ -19,8 +19,8 @@ number of deaths from unsafe water in all years or in country in year range
 {% endblock %}
 
 {% block col3 %}
-select country
-{% include 'vizs/countries.html' with type='radio' %}
+
+{% include 'vizs/countries.html' with type='radio' summary='Select country' %}
 {% endblock %}
 
 {% block col4 %}
@@ -44,8 +44,9 @@ select country
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
-                    {% if graphic %}
+        {% if graphic %}
+                <div class="col-md-12 text-center p-5 alert"  style="background-color:#6a8c793f">
+                    
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 </div>

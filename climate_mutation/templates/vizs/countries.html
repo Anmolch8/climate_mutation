@@ -1,5 +1,5 @@
-<details >
-    <summary>select countries for comparisons</summary>
+<!-- <details >
+    <summary>{{summary}}</summary>
     <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
       {% for country in countries %}
         <li class="list-group-item border-0 ps-4">
@@ -8,4 +8,27 @@
         </li>
         {% endfor %}
       </ul>
-</details>
+</details> -->
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item" >
+    <h2 class="accordion-header" id="headingOne" >
+      <button class="accordion-button" type="button" style="color: black;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        {{summary}}
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul class="list-group ps-1" style="height: 100px; overflow: auto; ">
+          {% for country in countries %}
+            <li class="list-group-item border-0 ">
+              <input class="form-check-input" type="{{type}}" value="{{country}}" name="countries" >
+              <label class="form-check-label">{{country}}</label>
+            </li>
+            {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>

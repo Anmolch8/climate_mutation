@@ -1,4 +1,4 @@
-Entity,Code,Year,deaths_household_air_pollution_solid_fuels,deaths_ambient_particulate_matter_pollution,deaths_air_pollution,death_ambient_ozone_pollution
+Entity,Code,Year,deaths_household_air_pollution_solid_fuels,particulate_matter_pollution,deaths_air_pollution,death_ambient_ozone_pollution
 Afghanistan,AFG,1990,370.0504743067536,30.82269327334309,402.17565090738105,6.581093017914819
 Afghanistan,AFG,1991,358.9784183804127,29.82618393012146,390.0852581413203,6.2676126648477455
 Afghanistan,AFG,1992,352.76645275348,29.202030065782967,383.20119613033694,5.926444093187991

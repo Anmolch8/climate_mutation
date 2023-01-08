@@ -17,10 +17,12 @@ def ozone_per(request):
           return redirect('login')
        else:
         country=request.POST.get('countries')
+        years=int(request.POST.get('num'))
+       
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/consumpozone.csv',parse_dates=['Year'])
@@ -38,22 +40,28 @@ def ozone_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=10)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
-        ax = year_as_index['1950':].plot()
+        ax = year_as_index['1990':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
         ax.fill_between(pred_ci.index,
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
         ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
-  
+         
+        
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.ylabel('''Ozone Consumption 
+ (million tonnes)''')
+        plt.xlabel('years')
+        plt.title(f'Ozone Consumption for next {years} years',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+    # Tweak spa
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+       
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -76,10 +84,11 @@ def air_pol_per(request):
        else:
         country=request.POST.get('countries')
         cause=request.POST.get('cause')
+        years=int(request.POST.get('num'))
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/air_pollution_deaths_per.csv',parse_dates=['Year'])
@@ -97,7 +106,7 @@ def air_pol_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=10)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
         ax = year_as_index['1950':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
@@ -105,14 +114,20 @@ def air_pol_per(request):
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
         ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
+   
   
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.ylabel(f'''Deaths
+        {cause}''')
+        plt.xlabel('years')
+        plt.title(f'Deaths in {country} next {years} years',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+    # Tweak spa
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+       
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -134,10 +149,11 @@ def nt_em_per(request):
           return redirect('login')
        else:
         country=request.POST.get('countries')
+        years=int(request.POST.get('num'))
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/nitrous_oxide_emissions_million_t.csv',parse_dates=['Year'])
@@ -157,7 +173,7 @@ def nt_em_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=10)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
         ax = year_as_index['1950':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
@@ -165,14 +181,19 @@ def nt_em_per(request):
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
         ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
-  
-        buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.ylabel('''Nitrous dioxide emissions''')
+        plt.xlabel('years')
+        plt.title(f'Nitrous Dioxide Emissions of {country} for next {years} years',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+   
+  
+        
+       
    
         fig.savefig('abc.png')
     
@@ -192,10 +213,11 @@ def mth_em_per(request):
           return redirect('login')
        else:
         country=request.POST.get('countries')
+        years=int(request.POST.get('num'))
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/methane_emissions_million_t.csv',parse_dates=['Year'])
@@ -215,7 +237,7 @@ def mth_em_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=10)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
         ax = year_as_index['1950':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
@@ -223,14 +245,19 @@ def mth_em_per(request):
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
         ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
+           
   
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.ylabel('''Methane emissions''')
+        plt.xlabel('years')
+        plt.title(f'Methane Emissions of {country} for next {years} years',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+   
    
         fig.savefig('abc.png')
     
@@ -251,10 +278,11 @@ def co2_em_per(request):
           return redirect('login')
        else:
         country=request.POST.get('countries')
+        years=int(request.POST.get('num'))
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/annualco2.csv',parse_dates=['Year'])
@@ -274,7 +302,7 @@ def co2_em_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=10)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
         ax = year_as_index['1950':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
@@ -282,14 +310,18 @@ def co2_em_per(request):
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
         ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
+   
   
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.ylabel('''Carbon dioxide emissions''')
+        plt.xlabel('years')
+        plt.title(f'Carbon Dioxide Emissions of {country} for next {years} years',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -310,10 +342,11 @@ def gb_eth_per(request):
           return redirect('login')
        else:
         temp=request.POST.get('temp')
+        years=int(request.POST.get('num'))
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/earth_global_temperature_incelsius.csv',parse_dates=['dt'])
@@ -330,7 +363,7 @@ def gb_eth_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=20)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
         ax = data1['2000':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
@@ -338,14 +371,14 @@ def gb_eth_per(request):
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
         ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
+        plt.xlabel('years')
+        plt.ylabel(f'{temp}')
+        plt.title(f'{temp} perdiction for next {years} years',pad=50)
+        plt.xticks(rotation=90)
+        plt.tight_layout() 
   
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -365,10 +398,11 @@ def un_wt_per(request):
           return redirect('login')
        else:
         country=request.POST.get('countries')
+        years=int(request.POST.get('num'))
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
  
         data=pd.read_csv('datasets/deaths_unsafe_water.csv',parse_dates=['Year'])
@@ -387,22 +421,24 @@ def un_wt_per(request):
                                  enforce_invertibility=False)
         results = mod.fit() 
         
-        pred_uc = results.get_forecast(steps=20)
+        pred_uc = results.get_forecast(steps=years)
         pred_ci = pred_uc.conf_int()
         ax = year_as_index['2000':].plot()
         pred_uc.predicted_mean.plot(ax=ax)
         ax.fill_between(pred_ci.index,
                          pred_ci.iloc[:, 0],
                          pred_ci.iloc[:, 1], color='k', alpha=.25)
-        ax.legend(['observed','forecast'])                 
-        ax.set_xlabel('Date')
-        ax.set_ylabel('consumption in tonnes')    
+        ax.legend(['observed','forecast'])  
+        plt.xlabel('years')
+        plt.ylabel('Deaths')
+        plt.title(f'Deaths perdiction in {country} for next {years} years',pad=50)
+        plt.xticks(rotation=90)
+        plt.tight_layout()                
+       
   
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+       
    
         fig.savefig('abc.png')
     

@@ -3,7 +3,7 @@
 
 
 {% block heading %}
-percentage deaths comparison for countries in a given year range from unsafe water
+Percentage deaths comparison for countries in a given year range from unsafe water
 {% endblock %}
 
 {% block col1 %}
@@ -19,8 +19,8 @@ percentage deaths comparison for countries in a given year range from unsafe wat
 {% endblock %}
 
 {% block col3 %}
-select country
-{% include 'vizs/countries.html' with type='checkbox' %}
+
+{% include 'vizs/countries.html' with type='checkbox' summary='Select countries' %}
 {% endblock %}
 
 {% block col4 %}
@@ -44,8 +44,9 @@ select country
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
-                    {% if graphic %}
+        {% if graphic %}
+                <div class="col-md-12 text-center p-5 alert"  style="background-color:#6a8c793f">
+                    
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 </div>

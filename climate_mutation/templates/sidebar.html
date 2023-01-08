@@ -29,11 +29,14 @@
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
-		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+        
+         
+		  		<a href="#" class="img logo rounded-circle mb-3" style="background-image: url({%static 'earth.png' %});"></a>
+          <h6 style="text-align: center">Climate Mutation</h6>
 	        <ul class="list-unstyled components mb-5">
           </li>
           <li>
-              <a href="{% url 'index' %}">Home</a>
+              <a href="{% url 'dash' %}">Dashboard home</a>
           </li>
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">MyAccount</a>
@@ -54,7 +57,7 @@
               <a href="#{{item.name | cut:' '}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{item.name}}</a>
               <ul class="collapse list-unstyled" id="{{item.name | cut:' '}}">
                 <li>
-                    <a href="{% url 'dataset' item.entity_id %}">dataset</a>
+                    <a href="{% url 'dataset' item.entity_id %}">Dataset</a>
                 </li>
 
                 <li>
@@ -67,6 +70,10 @@
               </ul>
 	          </li>
             {% endfor %}
+            <li>
+              <a href="{% url 'logout' %}">Logout</a>
+
+            </li>
             <!-- <li>
               <a href="#earthtemperature" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Global earth temperature</a>
               <ul class="collapse list-unstyled" id="earthtemperature">
@@ -178,9 +185,10 @@
 
 	        <div class="footer">
 	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
 						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-	         <!-- </div>  -->
+	         <!-- </div>  --> 
+						 <span class="mt-1">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Climate Mutation</span> 
+
 	      </div>
     	</nav>
   
@@ -201,17 +209,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    <a class="nav-link" href="{% url 'index' %}">home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="{% url 'ngo' %}">ngos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">faqs</a>
+                    <a class="nav-link" href="{% url 'faqs' %}">faqs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{% url 'contactus' %}">contact</a>
                 </li>
+                
               </ul>
             </div>
           </div>

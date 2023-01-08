@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib
-import gmplot
+#import gmplot
 from io import BytesIO
 import io
 import base64
+matplotlib.use('Agg')
 
 import plotly.express as px
 import pandas as pd
@@ -22,9 +23,9 @@ def top_ozone(request):
         print(year)
         print(top_values)
         fig=plt.figure(figsize=(6, 7), dpi=500,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/consumpozone.csv')
         year_wise=data[data["Year"]==year]
@@ -34,10 +35,16 @@ def top_ozone(request):
 #top
         sns.barplot(data=top,x="Entity",y="ozoneconsumption")
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.xlabel('Countries')
+        plt.ylabel('''Ozone Consumption 
+ (million tonnes)''')
+        plt.title(f'Top Consumption of Ozone in Year {year} for {top_values} Countries',pad=70)
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+    
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.5)
    
         fig.savefig('abc.png')
     
@@ -63,21 +70,28 @@ def ozone_comparisons(request):
         countries=request.POST.getlist('countries')
 
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/consumpozone.csv')
        
         data3=data[data['Entity'].isin(countries)]
         deaths3=data3[(data3["Year"]>=year1) & (data3["Year"]<=year2)]
         sns.barplot(data=deaths3,x='Year',y='ozoneconsumption',hue="Entity")
+        plt.xlabel('years')
+        plt.ylabel('''Ozone Consumption 
+ (million tonnes)''')
+        plt.title(f'Ozone Consumption from {year1} to {year2}',pad=70)
+        plt.legend(bbox_to_anchor=(1.3, 1.8), loc="upper right")
+        plt.xticks(rotation=90)
+        plt.tight_layout()
       
         buf = io.BytesIO()
-        plt.margins(0.8)
+       
      # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+      
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -92,44 +106,45 @@ def ozone_comparisons(request):
 
         graphic = base64.b64encode(buffercontent) 
         return graphic  
-def least_ozone(request):
-    if not request.session.has_key('email'):
-        raise http403
-    else:
-        year=int(request.POST.get('year'))
-        top_values=int(request.POST.get('num'))
-        print(year)
-        print(top_values)
-        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
-        matplotlib.rcParams['text.color'] = 'k'
-        data = pd.read_csv('datasets/consumpozone.csv')
-        year_wise=data[data["Year"]==year]
-        sorted_year_asc=year_wise.sort_values(by=["ozoneconsumption"])
-        print(sorted_year_asc)
-        least=sorted_year_asc[:top_values]
-        sns.barplot(data=least,x="Entity",y="ozoneconsumption")
-        buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+# def least_ozone(request):
+#     if not request.session.has_key('email'):
+#         raise http403
+#     else:
+#         year=int(request.POST.get('year'))
+#         top_values=int(request.POST.get('num'))
+#         print(year)
+#         print(top_values)
+#         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+#         matplotlib.rcParams['axes.labelsize'] = 14
+#         matplotlib.rcParams['xtick.labelsize'] = 8
+#         matplotlib.rcParams['ytick.labelsize'] = 12
+#         matplotlib.rcParams['text.color'] = 'k'
+#         data = pd.read_csv('datasets/consumpozone.csv')
+#         year_wise=data[data["Year"]==year]
+#         sorted_year_asc=year_wise.sort_values(by=["ozoneconsumption"])
+#         print(sorted_year_asc)
+#         least=sorted_year_asc[:top_values]
+#         sns.barplot(data=least,x="Entity",y="ozoneconsumption")
+#         buf = io.BytesIO()
+#         plt.margins(0.8)
+#     # Tweak spacing to prevent clipping of tick-labels
+#         plt.subplots_adjust(bottom=0.35)
+#         plt.xticks(rotation=90)
+#         plt.savefig(buf, format='png')
    
-        fig.savefig('abc.png')
+#         fig.savefig('abc.png')
     
-        plt.close(fig)
-        image = Image.open("abc.png")
-        draw = ImageDraw.Draw(image)
+#         plt.close(fig)
+#         image = Image.open("abc.png")
+#         draw = ImageDraw.Draw(image)
     
-        image.save(buf, 'PNG')
-        content_type="Image/png"
-        buffercontent=buf.getvalue()
+#         image.save(buf, 'PNG')
+#         content_type="Image/png"
+#         buffercontent=buf.getvalue()
 
 
-        graphic = base64.b64encode(buffercontent) 
-        return graphic
+#         graphic = base64.b64encode(buffercontent) 
+#         return graphic
 
 def ozone_yearly(request):
     if not request.session.has_key('email'):
@@ -140,19 +155,25 @@ def ozone_yearly(request):
         print(year1)
         print(year2)
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/consumpozone.csv')
         yearly=data[(data["Year"]>=year1) & (data["Year"]<=year2)]
         print(yearly)
         sns.lineplot(data=yearly,x='Year',y='ozoneconsumption')
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.xlim([year1,year2])
+        plt.ylabel('''Ozone Consumption 
+ (million tonnes)''')
+        plt.title(f'Ozone Consumption from {year1} to {year2}',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -179,25 +200,41 @@ def least_ozone(request):
         print(year)
         print(top_values)
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/consumpozone.csv')
         year_wise=data[data["Year"]==year]
         sorted_year_asc=year_wise.sort_values(by=["ozoneconsumption"])
         print(sorted_year_asc)
-        least=sorted_year_asc[:top_values]
+        
+        greater_than_zero=sorted_year_asc[sorted_year_asc['ozoneconsumption']>0]
+        least=greater_than_zero[:top_values]
         sns.barplot(data=least,x="Entity",y="ozoneconsumption")
+        plt.xlabel('Countries')
+        plt.ylabel('Ozone Consumption in million tonne')
+        plt.title(f'Least Consumption of Ozone in Year {year} for {top_values} Countries',pad=50)
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.ylim(0.0,0.2)
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+
+       # plt.margins(0.3)
+    # # Tweak spacing to prevent clipping of tick-labels
+       #  plt.subplots_adjust(bottom=0.35)
+    #     plt.gca().set_axis_off()
+        #plt.subplots_adjust(top = 1, bottom = 1, right = 1, left = 1, 
+         #   hspace = 1, wspace = 1)
+    #     plt.margins(0,0)  
+                                
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.5)
+        plt.close(fig)
    
         fig.savefig('abc.png')
     
-        plt.close(fig)
+        
         image = Image.open("abc.png")
         draw = ImageDraw.Draw(image)
     
@@ -207,6 +244,7 @@ def least_ozone(request):
 
 
         graphic = base64.b64encode(buffercontent) 
+        
         return graphic
 
 def land_temp_yearly(request):
@@ -219,9 +257,9 @@ def land_temp_yearly(request):
         print(year1)
         print(year2)
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/earth_global_temperature_incelsius.csv')
         data.drop(data.columns[[2,4,6,8]],axis=1,inplace=True)
@@ -249,10 +287,16 @@ def land_temp_yearly(request):
             
 
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.xlabel('Years')
+        plt.ylabel(f'{radio_input}')
+        plt.title(f'{radio_input}  from Year {year1} to {year2}',pad=50)
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        
+       
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -310,22 +354,28 @@ def country_year_deaths(request):
         year=int(request.POST.get('year'))
         country=request.POST.get('countries')
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/air_pollution_deaths.csv')
         df0=data[data['Year']==year]
         one_country=df0[df0["Entity"]==country]
         one_country=one_country.drop(['Year'],axis=1)
         p=sns.barplot(data=one_country)
-        p.set_title(f"Deaths by co2 in {country}")
-        p.set_ylabel("Deaths")
+        
         buf = io.BytesIO()
-        plt.margins(0.8)
+        plt.ylabel('''Number of deaths''')
+        plt.xlabel('Causes')
+        plt.title(f'Deaths in {country} in {year} year',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        
+      
     # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -349,9 +399,9 @@ def air_max_min_death_top_country(request):
         number=int(request.POST.get('num'))
         order=request.POST.get('order')
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data = pd.read_csv('datasets/air_pollution_deaths.csv')
         df1=data[data['Year']==year]
@@ -363,12 +413,16 @@ def air_max_min_death_top_country(request):
         top=country[:number]
         top_countries=sns.barplot(data=top,x="Entity",y="by_all_causes")
 #top 
-        top_countries.set_title(f'top {number} countries of death by harmful gases')
+        top_countries.set_title(f'{order} {number} countries of death by harmful gases in {year}',pad=70)
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.ylabel('Deaths')
+        plt.xlabel('Countries')
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+       
+   
+    
    
         fig.savefig('abc.png')
     
@@ -393,9 +447,9 @@ def deaths_onecountry_year_cause(request):
         cause=request.POST.get('cause')
         
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         df= pd.read_csv('datasets/air_pollution_deaths.csv')
         
@@ -411,14 +465,13 @@ def deaths_onecountry_year_cause(request):
             p=sns.lineplot(data=yearly)
         else:
             p=sns.barplot(data=yearly)
-        p.set_title('comparison of '+ country + 'for year '+str(year1)+" to "+str(year2))
-        p.set(ylabel='number of deaths')
+        p.set_title('Deaths in '+ country + 'for year '+str(year1)+" to "+str(year2)+" by "+ cause,pad=70)
+        p.set(ylabel='Deaths')
 
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -443,9 +496,9 @@ def deaths_countries_year_cause(request):
         cause=request.POST.get('cause')
         
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 20
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         df= pd.read_csv('datasets/air_pollution_deaths.csv')
         
@@ -466,10 +519,13 @@ def deaths_countries_year_cause(request):
         #      
 
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.ylabel('Deaths')
+        plt.xlabel('years')
+        plt.title(f'Deaths in countries from {year1} to {year2} by {cause}',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
    
         fig.savefig('abc.png')
     
@@ -490,9 +546,9 @@ def air_max_deaths_cause_or_cn(request):
     else:
         country=request.POST.get('countries')
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         df= pd.read_csv('datasets/air_pollution_deaths.csv')
         if country==None:
@@ -500,7 +556,7 @@ def air_max_deaths_cause_or_cn(request):
             df2=pd.DataFrame(df2.iloc[:,3:].mean()).reset_index()
             df2=df2.rename(columns=({'index':'causes',0:'values'}))
             p=sns.barplot(data=df2,x='causes',y='values')
-            p.set_title('maximun deaths in all years due to different causes')
+            p.set_title('maximun deaths in all years due to different causes' ,pad=70)
             p.set(ylabel='deaths')
         if not country==None:
             df3=df[df['Entity']==country]
@@ -508,13 +564,16 @@ def air_max_deaths_cause_or_cn(request):
             df3=pd.DataFrame(df3.iloc[:,3:].mean()).reset_index()
             df3=df3.rename(columns=({'index':'causes',0:'values'}))
             p=sns.barplot(data=df3,x='causes',y='values')
-            p.set_title(f'maximun deaths in {country} due to different causes')
+            p.set_title(f'maximun deaths in {country} due to different causes',pad=70)
             p.set(ylabel='deaths')
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+     
+      
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+    
    
         fig.savefig('abc.png')
     
@@ -539,9 +598,9 @@ def water_deaths_all_years_range_country(request):
           year2=int(request.POST.get('year2'))
         country=request.POST.get('countries')
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 20
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data=pd.read_csv('datasets/deaths_unsafe_water.csv')
         if country==None:
@@ -552,12 +611,17 @@ def water_deaths_all_years_range_country(request):
             by_country=data[data["Entity"]==country]
             deaths=by_country[(by_country["Year"]>=year1) & (by_country["Year"]<=year2)]
             p=sns.lineplot(data=deaths,x="Year",y="deaths")
-            p.set_title('comparison of '+ country + ' for year '+str(year1)+" to "+str(year2))
+           
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.ylabel('Deaths')
+        plt.xlabel('years')
+        plt.title(f'Deaths from {year1} to {year2} in {country}',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+   
+     
    
         fig.savefig('abc.png')
     
@@ -582,19 +646,23 @@ def water_deaths_cmp_countries_range(request):
         year2=int(request.POST.get('year2'))
         countries=request.POST.getlist('countries')
         fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
-        matplotlib.rcParams['axes.labelsize'] = 14
-        matplotlib.rcParams['xtick.labelsize'] = 8
-        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['axes.labelsize'] = 16
+        matplotlib.rcParams['xtick.labelsize'] = 15
+        matplotlib.rcParams['ytick.labelsize'] = 20
         matplotlib.rcParams['text.color'] = 'k'
         data=pd.read_csv('datasets/deaths_unsafe_water.csv')
         data3=data[data['Entity'].isin(countries)]
         deaths3=data3[(data3["Year"]>=year1) & (data3["Year"]<=year2)]
         sns.barplot(data=deaths3,x='Year',y='deaths',hue="Entity")
         buf = io.BytesIO()
-        plt.margins(0.8)
-    # Tweak spacing to prevent clipping of tick-labels
-        plt.subplots_adjust(bottom=0.35)
-        plt.savefig(buf, format='png')
+        plt.ylabel('Deaths')
+        plt.xlabel('years')
+        plt.title(f'Deaths in countries from {year1} to {year2}',pad=70)
+        
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.3)
+  
    
         fig.savefig('abc.png')
     

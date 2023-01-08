@@ -1,4 +1,4 @@
-Entity,Code,Year,by_solidfuels,by_ambient_particulate_matter,by_all_causes,by_ambient_ozone
+Entity,Code,Year,by_solidfuels,by_particulate_matter,by_all_causes,by_ambient_ozone
 Afghanistan,AFG,1990,370.0504743,30.82269327,402.1756509,6.581093018
 Afghanistan,AFG,1991,358.9784184,29.82618393,390.0852581,6.267612665
 Afghanistan,AFG,1992,352.7664528,29.20203007,383.2011961,5.926444093

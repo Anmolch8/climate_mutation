@@ -4,27 +4,27 @@
 
 
 {% block heading %}
-global earth temperature perdiction
+Global earth temperature perdiction
 {% endblock heading %}
 
 {% block col1 %}
 <details >
-    <summary>select visualizations</summary>
-    <ul class="list-group ps-3" style="height: 100px; overflow: auto; ">
-        <li class="list-group-item border-0">
-          <input class="form-check-input" type="radio" value="LandAverageTemperature" name="temp" >
+    <summary>Select perdiction on</summary>
+    <ul class="list-group " style="height: 100px; overflow: auto; ">
+        <li class="list-group-item border-0 ps-4">
+          <input class="form-check-input " type="radio" value="LandAverageTemperature" name="temp" >
           <label class="form-check-label" for="firstradio">Land average temperature</label>
         </li>
         
-         <li class="list-group-item border-0">
+         <li class="list-group-item border-0 ps-4">
           <input class="form-check-input" type="radio" value="LandMaxTemperature" name="temp" >
           <label class="form-check-label" for="secondradio">Land maximum temperature</label>
         </li>
-        <li class="list-group-item border-0">
+        <li class="list-group-item border-0 ps-4">
           <input class="form-check-input" type="radio" value="LandMinTemperature" name="temp"  >
           <label class="form-check-label" for="thirdradio">Land minimum temperature</label>
         </li>
-        <li class="list-group-item border-0">
+        <li class="list-group-item border-0 ps-4">
             <input class="form-check-input" type="radio" value="LandAndOceanAverageTemperature" name="temp"  >
             <label class="form-check-label" for="fourthradio">Land and ocean average temperature</label>
           </li>
@@ -35,10 +35,14 @@ global earth temperature perdiction
 {% endblock col1 %}
 
 {% block col2 %}
-<button type="submit" class="btn btn-success btn-secondary mt-3">Submit</button>
-
-
+Number of years
+<input type="number" class="form-control " min="5" max="30" name="num">
 {% endblock col2 %}
+
+{% block col3 %}
+<button type="submit" class="btn btn-success btn-secondary mt-4">Predict</button>
+
+{% endblock col3 %}
 
 {% block graph %}
 
@@ -59,9 +63,10 @@ global earth temperature perdiction
             </div>
     
         </div>
-                <div class="col-md-12 text-center pt-5">
+        {% if graphic %}
+                <div class="col-md-12 text-center pt-5"  style="background-color:#6a8c793f">
      
-                    {% if graphic %}
+                    
                     <img style=" height: 400px;  width:600px; "  src="data:image/png;base64,{{graphic|safe}}" >
                     {% endif %}
                 
