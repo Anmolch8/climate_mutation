@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED 1
 
 COPY ./climate_mutation /climate_mutation
 COPY ./requirements.txt /requirements.txt
-
+COPY ./pscripts /pscripts
 
 WORKDIR /climate_mutation
 
@@ -17,10 +17,13 @@ RUN python -m venv /py && \
     mkdir -p /vol/web/static && \
     mkdir -p /vol/web/media && \
     chown -R climate_user:climate_user /vol && \
-    chmod -R 755 /vol
+    chmod -R 755 /vol  && \
+    chmod -R +x /pscripts
 
-ENV PATH="/py/bin:$PATH"
+ENV PATH="/pscripts:/py/bin:$PATH"
 
 USER climate_user
+
+CMD ["run.sh"]
 
 

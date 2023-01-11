@@ -27,3 +27,4 @@ statsmodels==0.13.5
 tenacity==8.1.0
 tzdata==2022.2
 urllib3==1.26.12
+uWSGI>=2.0.19.1,<2.1
