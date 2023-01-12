@@ -18,7 +18,9 @@ RUN python -m venv /py && \
     mkdir -p /vol/web/media && \
     chown -R climate_user:climate_user /vol && \
     chmod -R 755 /vol  && \
-    chmod -R +x /pscripts
+    chmod -R +x /pscripts   && \
+    chown climate_user:climate_user /climate_mutation && \
+    chown climate_user:climate_user /climate_mutation/db.sqlite3
 
 ENV PATH="/pscripts:/py/bin:$PATH"
 
