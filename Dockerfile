@@ -6,6 +6,7 @@ COPY ./climate_mutation /climate_mutation
 COPY ./requirements.txt /requirements.txt
 COPY ./pscripts /pscripts
 
+
 WORKDIR /climate_mutation
 
 EXPOSE 8000
@@ -21,6 +22,8 @@ RUN python -m venv /py && \
     chmod -R +x /pscripts   && \
     chown climate_user:climate_user /climate_mutation && \
     chown climate_user:climate_user /climate_mutation/db.sqlite3
+
+
 
 ENV PATH="/pscripts:/py/bin:$PATH"
 

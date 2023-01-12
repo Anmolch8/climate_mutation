@@ -18,5 +18,4 @@ RUN mkdir -p /vol/static && \
     chmod +x /run.sh
 
 USER nginx
-
 CMD ["/run.sh"]

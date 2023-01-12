@@ -22,4 +22,5 @@ services:
     volumes:
       - static-data:/vol/static
 volumes:
-  static-data:           
+  static-data:
+           
