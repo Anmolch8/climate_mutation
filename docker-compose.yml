@@ -7,12 +7,13 @@ services:
           context: .
        command: >
            sh -c "python manage.py migrate && 
-           python manage.py runserver 0.0.0.0:8000"   
+           python manage.py runserver 0.0.0.0:8000
+           "   
        ports:
           - 8000:8000
        volumes:
           - ./climate_mutation:/climate_mutation
-          - ./data/web:/vol/web
+          - ./data/web:/vol/web 
        environment:
           - SECRET_KEY=devsecretkey
           - DEBUG=1         

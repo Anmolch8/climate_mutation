@@ -124,7 +124,7 @@ def head_foot(request):
       return render(request,'head_foot.html')
        
 def register(request):
- if request.POST.get('user_email')  in list(user_register.objects.filter(user_email=request.POST.get('user_email'))):
+ if request.POST.get('user_email') not  in list(user_register.objects.filter(user_email=request.POST.get('user_email'))):
     if request.method=='POST':
        user=user_register()
        pw=request.POST.get('pas')
